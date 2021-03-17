@@ -67,7 +67,7 @@ namespace ContactsApp
             }
             set
             {
-                if (_birthday.Year<1900)
+                if (_birthday.Year < 1900)
                 {
                     throw new ArgumentException("Дата рождения не может быть раньше 1900 года");
                 }
@@ -76,4 +76,5 @@ namespace ContactsApp
 
 
     }
+}
 
