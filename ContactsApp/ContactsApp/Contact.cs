@@ -1,21 +1,42 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace ContactsApp
 {
     /// <summary>
     /// Класс <see cref="Contact"/> содержит информацию о контакте
     /// </summary>
-    public class Contact
+    public class Contact : ICloneable
     {
         /// <summary>
         /// Содержит имя
         /// </summary>
         private string _name;
+        /// <summary>
+        /// Содержит фамилию
+        /// </summary>
+        private string _surname;
+        /// <summary>
+        /// Содержит email
+        /// </summary>
+        private string _email;
+        /// <summary>
+        /// Содержит vkID
+        /// </summary>
+        private string _vkID;
+        /// <summary>
+        /// Содержит дату рождения
+        /// </summary>
+        private DateTime _birthday;
+        /// <summary>
+        /// Содержит максимальную длинну имени, фамилии и email
+        /// </summary>
+        public const int MAXLETTERLENGTH = 50;
+        /// <summary>
+        /// Содержит максимальную длину vkID
+        /// </summary>
+        public const int MAXVKLETTERLENGHT = 15;
 
         /// <summary>
         /// Возвращает и задает имя <see cref="Name"/>
@@ -28,53 +49,26 @@ namespace ContactsApp
             }
             set
             {
-                if (value.Length > 50)
-                {
-                    throw new ArgumentException("Длина имени не может превышать 50 символов");
-                }
-                if (value.Length == 0)
-                {
-                    throw new ArgumentException("Поле имени не может быть пустым");
-                }
-                TextInfo text = CultureInfo.CurrentCulture.TextInfo;
-                _name = text.ToTitleCase(value);
+                StringValidator.AssertStringLength(nameof(Name),value,MAXLETTERLENGTH);
+                _name = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(value);
             }
         }
 
         /// <summary>
-        /// Содержит фамилию
+        /// Возвращает и задает фамилию <see cref="Surname"/>
         /// </summary>
-        private string _lastName;
-
-        /// <summary>
-        /// Возвращает и задает фамилию <see cref="LastName"/>
-        /// </summary>
-        public string LastName
+        public string Surname
         {
             get
             {
-                return _lastName;
+                return _surname;
             }
             set
             {
-                if (value.Length > 50)
-                {
-                    throw new ArgumentException("Длина имени не может превышать 50 символов");
-                }
-                if (value.Length == 0)
-                {
-                    throw new ArgumentException("Поле имени не может быть пустым");
-                }
-
-                TextInfo text = CultureInfo.CurrentCulture.TextInfo;
-                _lastName = text.ToTitleCase(value);
+                StringValidator.AssertStringLength(nameof(Surname),value,MAXLETTERLENGTH);
+                _surname = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(value);
             }
         }
-
-        /// <summary>
-        /// Содержит email
-        /// </summary>
-        private string _email;
 
         /// <summary>
         /// Возвращает и задает email <see cref="Email"/>
@@ -87,19 +81,10 @@ namespace ContactsApp
             }
             set
             {
-                if (value.Length > 50)
-                {
-                    throw new ArgumentException("Длинна email не может " +
-                                                "превышать 50 симоволов");
-                }
+                StringValidator.AssertStringLength(nameof(Email),value,MAXLETTERLENGTH);
                 _email = value;
             }
         }
-
-        /// <summary>
-        /// Содержит vkID
-        /// </summary>
-        private string _vkID;
 
         ///<summary>
         ///Возвращает и задает ID вконтакте <see cref="VkID"/>
@@ -112,17 +97,9 @@ namespace ContactsApp
             }
             set
             {
-                if (value.Length > 15)
-                {
-                    throw new ArgumentException("Длинна vkID не может превышать 15 символов");
-                }
+               StringValidator.AssertStringLength(nameof(VkID),value,MAXVKLETTERLENGHT);
             }
         }
-
-        /// <summary>
-        /// Содержит дату рождения
-        /// </summary>
-        private DateTime _birthday;
 
         /// <summary>
         /// Возвращает и задает дату рождения <see cref="Birthday"/>
@@ -135,18 +112,30 @@ namespace ContactsApp
             }
             set
             {
-                if (DateTime.Today > _birthday)
-                {
-                    throw new ArgumentException("Дата рождения не может быть позже текущей даты");
-                }
-                if (_birthday.Year < 1900)
-                {
-                    throw new ArgumentException("Дата рождения не может быть раньше 1900 года");
-                }
+                DateValidator.AssertDate(value);
+                _birthday = value;
             }
         }
+        /// <summary>
+        /// Возвращает и задает телефонный номер
+        /// </summary>
+        public PhoneNumber PhoneNumber { get; set; }
 
-
+        public Contact(string name, string surname, string email, string vkId, DateTime birthday,
+            PhoneNumber number)
+        {
+            this.Name = name;
+            this.Surname = Surname;
+            this.Email = email;
+            this.VkID = vkId;
+            this.Birthday = birthday;
+            this.PhoneNumber = number;
+        }
+        public object Clone()
+        {
+            return new Contact(this.Name, this.Surname, this.Email, this.VkID, this.Birthday,
+                new PhoneNumber(this.PhoneNumber.Number));
+        }
     }
 }
 
