@@ -49,7 +49,8 @@ namespace ContactsApp
             }
             set
             {
-                StringValidator.AssertStringLength(nameof(Name),value,MAXLETTERLENGTH);
+                StringValidator.AssertStringLength(nameof(Name),value,
+                    MAXLETTERLENGTH);
                 _name = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(value);
             }
         }
@@ -65,7 +66,8 @@ namespace ContactsApp
             }
             set
             {
-                StringValidator.AssertStringLength(nameof(Surname),value,MAXLETTERLENGTH);
+                StringValidator.AssertStringLength(nameof(Surname),value,
+                    MAXLETTERLENGTH);
                 _surname = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(value);
             }
         }
@@ -81,7 +83,8 @@ namespace ContactsApp
             }
             set
             {
-                StringValidator.AssertStringLength(nameof(Email),value,MAXLETTERLENGTH);
+                StringValidator.AssertStringLength(nameof(Email),value,
+                    MAXLETTERLENGTH);
                 _email = value;
             }
         }
@@ -97,7 +100,8 @@ namespace ContactsApp
             }
             set
             {
-               StringValidator.AssertStringLength(nameof(VkID),value,MAXVKLETTERLENGHT);
+               StringValidator.AssertStringLength(nameof(VkID),value,
+                   MAXVKLETTERLENGHT);
             }
         }
 
@@ -116,13 +120,23 @@ namespace ContactsApp
                 _birthday = value;
             }
         }
+
         /// <summary>
-        /// Возвращает и задает телефонный номер
+        /// Возвращает и задает телефонный номер <see cref="PhoneNumber"/>
         /// </summary>
         public PhoneNumber PhoneNumber { get; set; }
 
-        public Contact(string name, string surname, string email, string vkId, DateTime birthday,
-            PhoneNumber number)
+        /// <summary>
+        /// Конструктор объекта <see cref="Contact"/>
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="surname"></param>
+        /// <param name="email"></param>
+        /// <param name="vkId"></param>
+        /// <param name="birthday"></param>
+        /// <param name="number"></param>
+        public Contact(string name, string surname, string email, string vkId,
+            DateTime birthday, PhoneNumber number)
         {
             this.Name = name;
             this.Surname = Surname;
@@ -131,10 +145,15 @@ namespace ContactsApp
             this.Birthday = birthday;
             this.PhoneNumber = number;
         }
+
+        /// <summary>
+        /// Создает клон объекта <see cref="Contact"/>
+        /// </summary>
+        /// <returns></returns>
         public object Clone()
         {
-            return new Contact(this.Name, this.Surname, this.Email, this.VkID, this.Birthday,
-                new PhoneNumber(this.PhoneNumber.Number));
+            return new Contact(this.Name, this.Surname, this.Email, this.VkID, 
+                this.Birthday, new PhoneNumber(this.PhoneNumber.Number));
         }
     }
 }
