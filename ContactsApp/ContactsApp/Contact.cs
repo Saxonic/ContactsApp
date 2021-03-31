@@ -13,22 +13,27 @@ namespace ContactsApp
         /// Содержит имя
         /// </summary>
         private string _name;
+
         /// <summary>
         /// Содержит фамилию
         /// </summary>
         private string _surname;
+
         /// <summary>
         /// Содержит email
         /// </summary>
         private string _email;
+
         /// <summary>
         /// Содержит vkID
         /// </summary>
         private string _vkID;
+
         /// <summary>
         /// Содержит дату рождения
         /// </summary>
         private DateTime _birthday;
+
         /// <summary>
         /// Содержит максимальную длинну имени, фамилии и email
         /// </summary>
@@ -102,6 +107,7 @@ namespace ContactsApp
             {
                StringValidator.AssertStringLength(nameof(VkID),value,
                    MAXVKLETTERLENGHT);
+               _vkID = value;
             }
         }
 
@@ -138,12 +144,12 @@ namespace ContactsApp
         public Contact(string name, string surname, string email, string vkId,
             DateTime birthday, PhoneNumber number)
         {
-            this.Name = name;
-            this.Surname = Surname;
-            this.Email = email;
-            this.VkID = vkId;
-            this.Birthday = birthday;
-            this.PhoneNumber = number;
+            Name = name;
+            Surname = surname;
+            Email = email;
+            VkID = vkId;
+            Birthday = birthday;
+            PhoneNumber = number;
         }
 
         /// <summary>

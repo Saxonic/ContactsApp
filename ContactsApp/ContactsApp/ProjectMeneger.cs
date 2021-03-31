@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Text;
 using Newtonsoft.Json;
 
 namespace ContactsApp
@@ -9,26 +10,30 @@ namespace ContactsApp
         /// <summary>
         /// Содержит имя файла <see cref="NAME"/>
         /// </summary>
-        private const string NAME = "ContactsApp.notes";
+        private const string NAME = @"\ContactsApp.json";
+
         /// <summary>
-        /// Содержит стандартный путь в папку данных <see cref="_derictory"/>
+        /// Содержит стандартный путь в папку данных <see cref="_directory"/>
         /// </summary>
-        private static readonly string _derictory = 
-            Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\ContactsApp";
+        private static readonly string _directory = 
+            Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) 
+            + @"\VladioINC\ContactsApp";
+
         /// <summary>
         /// Содержит путь до файла <see cref="_filePath"/>
         /// </summary>
-        private static readonly string _filePath = _derictory + NAME;
+        public static readonly string _filePath = _directory + NAME;
 
         /// <summary>
         /// Реализует сохранение файла
         /// </summary>
         /// <param name="project"></param>
-        public static void Save(Project project)
+        public static void Save(Project project, string path)
         {
-            if (!Directory.Exists(_derictory))
+            string directory = Path.GetDirectoryName(path);
+            if (!Directory.Exists(directory))
             {
-                Directory.CreateDirectory(_derictory);
+                Directory.CreateDirectory(directory);
             }
 
             JsonSerializer serializer = new JsonSerializer();
@@ -38,25 +43,43 @@ namespace ContactsApp
                 serializer.Serialize(writer,project);
             }
         }
+
         /// <summary>
         /// Сохраняет файл в папке
         /// </summary>
         /// <returns>
         /// Все данные файла
         /// </returns>
-        public static Project Load()
+        public static Project Load(string path)
         {
+            string directory = Path.GetDirectoryName(path);
             Project project = new Project();
-            if (!File.Exists(_filePath))
+            if (!Directory.Exists(directory))
             {
                 return project;
             }
 
-            JsonSerializer serializer = new JsonSerializer();
-            using (StreamReader sr = new StreamReader(_filePath))
-            using (JsonReader reader = new JsonTextReader(sr))
+            if (!File.Exists(path))
             {
-                project = (Project) serializer.Deserialize<Project>(reader);
+                return project;
+            }
+
+            try
+            {
+                JsonSerializer serializer = new JsonSerializer();
+                using (StreamReader sr = new StreamReader(_filePath))
+                using (JsonReader reader = new JsonTextReader(sr))
+                {
+                    project = serializer.Deserialize<Project>(reader);
+                    if (project == null)
+                    {
+                        return new Project();
+                    }
+                }
+            }
+            catch
+            {
+                return new Project();
             }
 
             return project;

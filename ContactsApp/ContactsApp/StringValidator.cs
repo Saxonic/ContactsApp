@@ -25,7 +25,7 @@ namespace ContactsApp
                 throw new ArgumentException("Invalid number length");
             }
 
-            if (number.ToString().ToCharArray()[0] != 7)
+            if (number.ToString().ToCharArray()[0] != '7')
             {
                 throw new ArgumentException("number must start from 7");
             }

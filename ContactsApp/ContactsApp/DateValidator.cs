@@ -6,7 +6,7 @@ namespace ContactsApp
     {
         public static void AssertDate(DateTime checkDate)
         {
-            if (DateTime.Today > checkDate)
+            if (DateTime.Today < checkDate)
             {
                 throw new ArgumentException("birthday is later than today");
             }
