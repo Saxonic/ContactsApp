@@ -40,7 +40,7 @@ namespace ContactsApp
             using (StreamWriter sw = new StreamWriter(_filePath))
             using (JsonWriter writer = new JsonTextWriter(sw))
             {
-                serializer.Serialize(writer,project);
+                serializer.Serialize(writer, project);
             }
         }
 

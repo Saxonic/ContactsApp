@@ -38,6 +38,7 @@ namespace ContactsApp
         /// Содержит максимальную длинну имени, фамилии и email
         /// </summary>
         public const int MAXLETTERLENGTH = 50;
+
         /// <summary>
         /// Содержит максимальную длину vkID
         /// </summary>

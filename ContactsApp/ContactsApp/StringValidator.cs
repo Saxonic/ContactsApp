@@ -5,7 +5,7 @@ namespace ContactsApp
     public static class StringValidator
     {
         /// <summary>
-        /// Проверка на соответсвие указанной длинне <see cref="maxLength"/>>
+        /// Проверка на соответсвие указанной длине <see cref="maxLength"/>>
         /// </summary>
         /// <param name="stringName"></param>
         /// <param name="checkString"></param>

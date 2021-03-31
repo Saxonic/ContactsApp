@@ -10,6 +10,7 @@ namespace ContactsApp
         /// Содержит номер телефона
         /// </summary>
         private long _number;
+
         /// <summary>
         /// Содержит необходимую длину номера телефона
         /// </summary>
@@ -30,6 +31,7 @@ namespace ContactsApp
                 _number = value;
             }
         }
+
         /// <summary>
         /// <see cref="PhoneNumber"/> конструктор
         /// </summary>
