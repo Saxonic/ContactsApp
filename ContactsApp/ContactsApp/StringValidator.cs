@@ -2,6 +2,10 @@
 
 namespace ContactsApp
 {
+    /// <summary>
+    /// Класс <see cref="StringValidator"/> выполняет проверку всех полей
+    /// с типом данных <see cref="String"/>
+    /// </summary>
     public static class StringValidator
     {
         /// <summary>
@@ -18,6 +22,11 @@ namespace ContactsApp
             }
         }
 
+        /// <summary>
+        /// Проверяет правильность введенного номера
+        /// </summary>
+        /// <param name="number"></param>
+        /// <param name="requiredLength"></param>
         public static void AssertNumber(long number, int requiredLength)
         {
             if (number.ToString().Length != requiredLength)

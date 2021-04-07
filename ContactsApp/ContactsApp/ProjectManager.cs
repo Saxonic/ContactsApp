@@ -5,7 +5,11 @@ using Newtonsoft.Json;
 
 namespace ContactsApp
 {
-    public static class ProjectMeneger
+    /// <summary>
+    /// Класс <see cref=""/> вполняет сохранение и
+    /// загрузку <see cref="Project"/> в файл.
+    /// </summary>
+    public static class ProjectManager
     {
         /// <summary>
         /// Содержит имя файла <see cref="NAME"/>
@@ -35,7 +39,6 @@ namespace ContactsApp
             {
                 Directory.CreateDirectory(directory);
             }
-
             JsonSerializer serializer = new JsonSerializer();
             using (StreamWriter sw = new StreamWriter(_filePath))
             using (JsonWriter writer = new JsonTextWriter(sw))
@@ -45,19 +48,15 @@ namespace ContactsApp
         }
 
         /// <summary>
-        /// Сохраняет файл в папке
+        /// Загружает файл из папки
         /// </summary>
         /// <returns>
-        /// Все данные файла
+        /// Все данные проекта
         /// </returns>
         public static Project Load(string path)
         {
             string directory = Path.GetDirectoryName(path);
             Project project = new Project();
-            if (!Directory.Exists(directory))
-            {
-                return project;
-            }
 
             if (!File.Exists(path))
             {

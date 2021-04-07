@@ -2,6 +2,10 @@
 
 namespace ContactsApp
 {
+    /// <summary>
+    /// Класс <see cref="DateValidator"/> выплняет проверку всех полей с
+    /// типом данных <see cref="DateTime"/>
+    /// </summary>
     public static class DateValidator
     {
         public static void AssertDate(DateTime checkDate)

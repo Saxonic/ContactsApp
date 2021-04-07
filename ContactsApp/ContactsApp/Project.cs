@@ -3,6 +3,9 @@
 
 namespace ContactsApp
 {
+    /// <summary>
+    /// Класс <see cref="Project"/> содержит данные о проекте 
+    /// </summary>
     public class Project
     {
         /// <summary>

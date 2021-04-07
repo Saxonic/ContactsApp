@@ -2,7 +2,7 @@
 namespace ContactsApp
 {
     /// <summary>
-    /// Class <see cref="PhoneNumber"> contains the telephone number of the person
+    /// Класс <see cref="PhoneNumber"> содержит телефонный номер контакта
     /// </summary>
     public class PhoneNumber
     {

@@ -28,8 +28,8 @@ namespace ContactsAppUI
                 new DateTime(1919, 11, 21),
                 new PhoneNumber(79966482693));
             project.Contacts.Add(contact);
-            ProjectMeneger.Save(project,ProjectMeneger._filePath);
-            project = ProjectMeneger.Load(ProjectMeneger._filePath);
+            ProjectManager.Save(project,ProjectManager._filePath);
+            project = ProjectManager.Load(ProjectManager._filePath);
         }
     }
 }
