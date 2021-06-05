@@ -153,5 +153,15 @@ namespace ContactsAppUI
             var about = new AboutForm();
             about.ShowDialog();
         }
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == (Keys.F1))
+            {
+                var about = new AboutForm();
+                about.ShowDialog();
+                return true;
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
+        }
     }
 }
