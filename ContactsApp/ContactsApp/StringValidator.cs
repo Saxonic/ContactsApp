@@ -21,7 +21,11 @@ namespace ContactsApp
                 throw new ArgumentException("incorrect value in: " + stringName);
             }
         }
-
+        /// <summary>
+        /// Возвращает номер состоящий только из цифр
+        /// </summary>
+        /// <param name="number"></param>
+        /// <returns></returns>
         public static string GetClearNumber (string number)
         {
             string clearNumber = "";

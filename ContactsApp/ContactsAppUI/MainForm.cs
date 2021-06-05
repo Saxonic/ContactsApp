@@ -8,6 +8,9 @@ namespace ContactsAppUI
 {
     public partial class MainForm : Form
     {
+        /// <summary>
+        /// Содержит все данные о проекте
+        /// </summary>
         private Project _project;
         public MainForm()
         {
@@ -27,7 +30,9 @@ namespace ContactsAppUI
             }
             UpdateListBox(_project.Contacts);
         }
-
+        /// <summary>
+        /// Очищает поля textBox
+        /// </summary>
         private void ClearTextBox()
         {
             SurnameTextBox.Clear();
@@ -37,7 +42,10 @@ namespace ContactsAppUI
             EmailTextBox.Clear();
             VkIdTextBox.Clear();
         }
-
+        /// <summary>
+        /// Обновляет поле ListBox на новые значения
+        /// </summary>
+        /// <param name="contacts"></param>
         private void UpdateListBox(List<Contact> contacts)
         {
             ContactsListBox.DataSource = null;
@@ -45,6 +53,10 @@ namespace ContactsAppUI
             ContactsListBox.DisplayMember = "Surname";
             ContactsListBox.ValueMember = "PhoneNumber";
         }
+        /// <summary>
+        /// Обновляет поля TextBox на новые значения
+        /// </summary>
+        /// <param name="contact"></param>
         private void ChangeTextBox(Contact contact)
         {
             SurnameTextBox.Text = contact.Surname;
@@ -54,7 +66,6 @@ namespace ContactsAppUI
             EmailTextBox.Text = contact.Email;
             VkIdTextBox.Text = contact.VkID;
         }
-
         private void Add_Click(object sender, EventArgs e)
         {
             ContactForm contactForm = new ContactForm();
