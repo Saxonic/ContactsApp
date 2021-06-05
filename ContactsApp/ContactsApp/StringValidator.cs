@@ -22,6 +22,19 @@ namespace ContactsApp
             }
         }
 
+        public static string GetClearNumber (string number)
+        {
+            string clearNumber = "";
+            foreach (var i in number)
+            {
+                if (i>='0' && i <='9')
+                {
+                    clearNumber += i;
+                }
+            }
+            return clearNumber;
+        }
+
         /// <summary>
         /// Проверяет правильность введенного номера
         /// </summary>

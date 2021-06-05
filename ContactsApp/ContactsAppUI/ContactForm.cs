@@ -17,6 +17,10 @@ namespace ContactsAppUI
         /// Поле содержащее информацию о контакте
         /// </summary>
         private Contact _contact;
+        /// <summary>
+        /// Поле содержащее бэкап копию контакта
+        /// </summary>
+        private Contact _oldContact;
         public ContactForm()
         {
             InitializeComponent();
@@ -39,6 +43,7 @@ namespace ContactsAppUI
                         .Number.ToString();
                     EmailTextBox.Text = _contact.Email;
                     VkIdTextBox.Text = _contact.VkID;
+                    _oldContact = (Contact)_contact.Clone();
                 }
             }
         }
@@ -110,7 +115,8 @@ namespace ContactsAppUI
             try
             {
                 var phoneNumber = PhoneTextBox.Text;
-                StringValidator.AssertNumber(Convert.ToInt64(phoneNumber),
+                StringValidator.AssertNumber(Convert.
+                    ToInt64(StringValidator.GetClearNumber(phoneNumber)),
                     PhoneNumber.NUMBERLENGHT);
                 PhoneTextBox.BackColor = Color.White;
             }
@@ -163,7 +169,7 @@ namespace ContactsAppUI
             try
             {
                 PhoneNumber number = new PhoneNumber(
-                    Convert.ToInt64(PhoneTextBox.Text));
+                    Convert.ToInt64(StringValidator.GetClearNumber(PhoneTextBox.Text)));
                 _contact = new Contact(NameTextBox.Text,
                     SurnameTextBox.Text, EmailTextBox.Text,
                     VkIdTextBox.Text, BirthdayDateTimePicker.Value,number);
@@ -179,6 +185,7 @@ namespace ContactsAppUI
 
         private void CancelButton_Click(object sender, EventArgs e)
         {
+            Contact = _oldContact;
             DialogResult = DialogResult.Cancel;
         }
     }

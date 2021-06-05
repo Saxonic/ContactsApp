@@ -35,7 +35,6 @@ namespace ContactsAppUI
             this.PhoneLabel = new System.Windows.Forms.Label();
             this.VkIdTextBox = new System.Windows.Forms.TextBox();
             this.EmailTextBox = new System.Windows.Forms.TextBox();
-            this.PhoneTextBox = new System.Windows.Forms.TextBox();
             this.NameTextBox = new System.Windows.Forms.TextBox();
             this.SurnameTextBox = new System.Windows.Forms.TextBox();
             this.BirthdayLabel = new System.Windows.Forms.Label();
@@ -43,6 +42,7 @@ namespace ContactsAppUI
             this.SurnameLabel = new System.Windows.Forms.Label();
             this.CancelButton = new System.Windows.Forms.Button();
             this.OkButton = new System.Windows.Forms.Button();
+            this.PhoneTextBox = new System.Windows.Forms.MaskedTextBox();
             this.SuspendLayout();
             // 
             // BirthdayDateTimePicker
@@ -102,17 +102,6 @@ namespace ContactsAppUI
             this.EmailTextBox.Size = new System.Drawing.Size(524, 26);
             this.EmailTextBox.TabIndex = 21;
             this.EmailTextBox.TextChanged += new System.EventHandler(this.EmailTextBox_TextChanged);
-            // 
-            // PhoneTextBox
-            // 
-            this.PhoneTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.PhoneTextBox.Location = new System.Drawing.Point(112, 105);
-            this.PhoneTextBox.Name = "PhoneTextBox";
-            this.PhoneTextBox.Size = new System.Drawing.Size(524, 26);
-            this.PhoneTextBox.TabIndex = 20;
-            this.PhoneTextBox.TextChanged += new System.EventHandler(this.PhoneTextBox_TextChanged);
             // 
             // NameTextBox
             // 
@@ -185,11 +174,21 @@ namespace ContactsAppUI
             this.OkButton.UseVisualStyleBackColor = true;
             this.OkButton.Click += new System.EventHandler(this.OkButton_Click);
             // 
+            // PhoneTextBox
+            // 
+            this.PhoneTextBox.Location = new System.Drawing.Point(112, 106);
+            this.PhoneTextBox.Mask = "7(999) 999-99-99";
+            this.PhoneTextBox.Name = "PhoneTextBox";
+            this.PhoneTextBox.Size = new System.Drawing.Size(366, 26);
+            this.PhoneTextBox.TabIndex = 29;
+            this.PhoneTextBox.TextChanged += new System.EventHandler(this.PhoneTextBox_TextChanged);
+            // 
             // ContactForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(648, 253);
+            this.Controls.Add(this.PhoneTextBox);
             this.Controls.Add(this.OkButton);
             this.Controls.Add(this.CancelButton);
             this.Controls.Add(this.BirthdayDateTimePicker);
@@ -198,7 +197,6 @@ namespace ContactsAppUI
             this.Controls.Add(this.PhoneLabel);
             this.Controls.Add(this.VkIdTextBox);
             this.Controls.Add(this.EmailTextBox);
-            this.Controls.Add(this.PhoneTextBox);
             this.Controls.Add(this.NameTextBox);
             this.Controls.Add(this.SurnameTextBox);
             this.Controls.Add(this.BirthdayLabel);
@@ -220,7 +218,6 @@ namespace ContactsAppUI
         private System.Windows.Forms.Label PhoneLabel;
         private System.Windows.Forms.TextBox VkIdTextBox;
         private System.Windows.Forms.TextBox EmailTextBox;
-        private System.Windows.Forms.TextBox PhoneTextBox;
         private System.Windows.Forms.TextBox NameTextBox;
         private System.Windows.Forms.TextBox SurnameTextBox;
         private System.Windows.Forms.Label BirthdayLabel;
@@ -228,5 +225,6 @@ namespace ContactsAppUI
         private System.Windows.Forms.Label SurnameLabel;
         private System.Windows.Forms.Button CancelButton;
         private System.Windows.Forms.Button OkButton;
+        private System.Windows.Forms.MaskedTextBox PhoneTextBox;
     }
 }

@@ -33,7 +33,7 @@ namespace ContactsAppUI
             SurnameTextBox.Clear();
             NameTextBox.Clear();
             BirthdayDateTimePicker.Value = BirthdayDateTimePicker.MinDate;
-            PhoneTextBox.Clear();
+            PhoneMaskedTextBox.Clear();
             EmailTextBox.Clear();
             VkIdTextBox.Clear();
         }
@@ -50,7 +50,7 @@ namespace ContactsAppUI
             SurnameTextBox.Text = contact.Surname;
             NameTextBox.Text = contact.Name;
             BirthdayDateTimePicker.Value = contact.Birthday;
-            PhoneTextBox.Text = contact.PhoneNumber.Number.ToString();
+            PhoneMaskedTextBox.Text = contact.PhoneNumber.Number.ToString();
             EmailTextBox.Text = contact.Email;
             VkIdTextBox.Text = contact.VkID;
         }
@@ -79,16 +79,15 @@ namespace ContactsAppUI
                 return;
             }
 
-            var selectedContact = (Contact)_project
-                .Contacts[selectedIndex].Clone();
+            var selectedContact = _project.Contacts[selectedIndex];
             ContactForm contactForm = new ContactForm()
             {
                 Contact = selectedContact
             };
             DialogResult = contactForm.ShowDialog();
-            var editContact = contactForm.Contact;
             if (DialogResult == DialogResult.OK)
             {
+                var editContact = contactForm.Contact;
                 _project.Contacts.RemoveAt(selectedIndex);
                 _project.Contacts.Insert(selectedIndex, editContact);
                 ProjectManager.Save(_project, ProjectManager._filePath);
