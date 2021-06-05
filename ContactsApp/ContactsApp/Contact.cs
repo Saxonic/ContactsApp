@@ -42,7 +42,7 @@ namespace ContactsApp
         /// <summary>
         /// Содержит максимальную длину vkID
         /// </summary>
-        public const int MAXVKLETTERLENGHT = 15;
+        public const int MAXVKLETTERLENGTH = 15;
 
         /// <summary>
         /// Возвращает и задает имя <see cref="Name"/>
@@ -107,7 +107,7 @@ namespace ContactsApp
             set
             {
                StringValidator.AssertStringLength(nameof(VkID),value,
-                   MAXVKLETTERLENGHT);
+                   MAXVKLETTERLENGTH);
                _vkID = value;
             }
         }

@@ -62,14 +62,18 @@ namespace ContactsAppUI
                     = Color.LightSalmon;
             }
         }
-
+        /// <summary>
+        /// Проверка на ввод корректного значения <see cref="Contact.VkID"/>
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void VkIdTextBox_TextChanged(object sender, EventArgs e)
         {
             try
             {
                 var vkID = VkIdTextBox.Text;
                 StringValidator.AssertStringLength(null, 
-                    vkID, Contact.MAXVKLETTERLENGHT);
+                    vkID, Contact.MAXVKLETTERLENGTH);
                 VkIdTextBox.BackColor = Color.White;
             }
             catch (ArgumentException)
@@ -77,14 +81,18 @@ namespace ContactsAppUI
                 VkIdTextBox.BackColor = Color.LightSalmon;
             }
         }
-
+        /// <summary>
+        /// Проверка на ввод коректного значения <see cref="Contact.Email"/>
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void EmailTextBox_TextChanged(object sender, EventArgs e)
         {
             try
             {
                 var email = EmailTextBox.Text;
                 StringValidator.AssertStringLength(null,
-                    email, Contact.MAXVKLETTERLENGHT);
+                    email, Contact.MAXLETTERLENGTH);
                 EmailTextBox.BackColor = Color.White;
             }
             catch (ArgumentException)
@@ -92,7 +100,11 @@ namespace ContactsAppUI
                 EmailTextBox.BackColor = Color.LightSalmon;
             }
         }
-
+        /// <summary>
+        /// Проверка на вводе корректного значения <see cref="Contact.PhoneNumber"/>
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void PhoneTextBox_TextChanged(object sender, EventArgs e)
         {
             try
@@ -102,19 +114,23 @@ namespace ContactsAppUI
                     PhoneNumber.NUMBERLENGHT);
                 PhoneTextBox.BackColor = Color.White;
             }
-            catch (ArgumentException)
+            catch
             {
                 PhoneTextBox.BackColor = Color.LightSalmon;
             }
         }
-
+        /// <summary>
+        /// Проверка на ввод корректного значения <see cref="Contact.Name"/>
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void NameTextBox_TextChanged(object sender, EventArgs e)
         {
             try
             {
                 var name = NameTextBox.Text;
                 StringValidator.AssertStringLength(null,
-                    name, Contact.MAXVKLETTERLENGHT);
+                    name, Contact.MAXLETTERLENGTH);
                 NameTextBox.BackColor = Color.White;
             }
             catch (ArgumentException)
@@ -122,14 +138,18 @@ namespace ContactsAppUI
                 NameTextBox.BackColor = Color.LightSalmon;
             }
         }
-
+        /// <summary>
+        /// Проверка на ввод корректного значения <see cref="Contact.Surname"/>
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void SurnameTextBox_TextChanged(object sender, EventArgs e)
         {
             try
             {
                 var surname = SurnameTextBox.Text;
                 StringValidator.AssertStringLength(null,
-                    surname, Contact.MAXVKLETTERLENGHT);
+                    surname, Contact.MAXLETTERLENGTH);
                 SurnameTextBox.BackColor = Color.White;
             }
             catch (ArgumentException)
@@ -150,8 +170,8 @@ namespace ContactsAppUI
             }
             catch(ArgumentException)
             {
-                MessageBox.Show("Указаны недопустимые значения",
-                    "Ошибка", MessageBoxButtons.OK);
+                MessageBox.Show("Wrong value!",
+                    "Error", MessageBoxButtons.OK);
                 return;
             }
             DialogResult = DialogResult.OK;
