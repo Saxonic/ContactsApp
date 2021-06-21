@@ -29,6 +29,7 @@ namespace ContactsAppUI
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AboutForm));
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -43,45 +44,50 @@ namespace ContactsAppUI
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(12, 37);
+            this.label1.Location = new System.Drawing.Point(8, 24);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(213, 37);
+            this.label1.Size = new System.Drawing.Size(148, 26);
             this.label1.TabIndex = 0;
             this.label1.Text = "ContactsApp";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(15, 74);
+            this.label2.Location = new System.Drawing.Point(10, 48);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(55, 20);
+            this.label2.Size = new System.Drawing.Size(40, 13);
             this.label2.TabIndex = 1;
             this.label2.Text = "v 1.0.0";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(19, 114);
+            this.label3.Location = new System.Drawing.Point(13, 74);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(199, 20);
+            this.label3.Size = new System.Drawing.Size(137, 13);
             this.label3.TabIndex = 2;
             this.label3.Text = "Author: Vladislav Tretyakov";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(19, 172);
+            this.label4.Location = new System.Drawing.Point(13, 112);
+            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(145, 20);
+            this.label4.Size = new System.Drawing.Size(98, 13);
             this.label4.TabIndex = 3;
             this.label4.Text = "Email for feedback:";
             // 
             // linkLabel1
             // 
             this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(160, 172);
+            this.linkLabel1.Location = new System.Drawing.Point(107, 112);
+            this.linkLabel1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(167, 20);
+            this.linkLabel1.Size = new System.Drawing.Size(114, 13);
             this.linkLabel1.TabIndex = 4;
             this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "tretvl.work@gmail.com";
@@ -89,18 +95,20 @@ namespace ContactsAppUI
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(19, 196);
+            this.label5.Location = new System.Drawing.Point(13, 127);
+            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(64, 20);
+            this.label5.Size = new System.Drawing.Size(43, 13);
             this.label5.TabIndex = 5;
             this.label5.Text = "GitHub:";
             // 
             // linkLabel
             // 
             this.linkLabel.AutoSize = true;
-            this.linkLabel.Location = new System.Drawing.Point(79, 196);
+            this.linkLabel.Location = new System.Drawing.Point(53, 127);
+            this.linkLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.linkLabel.Name = "linkLabel";
-            this.linkLabel.Size = new System.Drawing.Size(162, 20);
+            this.linkLabel.Size = new System.Drawing.Size(111, 13);
             this.linkLabel.TabIndex = 6;
             this.linkLabel.TabStop = true;
             this.linkLabel.Text = "Saxonic/ContactsApp";
@@ -108,17 +116,18 @@ namespace ContactsAppUI
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(12, 287);
+            this.label6.Location = new System.Drawing.Point(8, 187);
+            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(198, 20);
+            this.label6.Size = new System.Drawing.Size(139, 13);
             this.label6.TabIndex = 7;
             this.label6.Text = "2021 Tretyakov Vladislav ©";
             // 
             // AboutForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(498, 316);
+            this.ClientSize = new System.Drawing.Size(336, 216);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.linkLabel);
             this.Controls.Add(this.label5);
@@ -127,8 +136,10 @@ namespace ContactsAppUI
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.MaximumSize = new System.Drawing.Size(520, 372);
-            this.MinimumSize = new System.Drawing.Size(520, 372);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.MaximumSize = new System.Drawing.Size(352, 255);
+            this.MinimumSize = new System.Drawing.Size(352, 255);
             this.Name = "AboutForm";
             this.Text = "AboutForm";
             this.ResumeLayout(false);
