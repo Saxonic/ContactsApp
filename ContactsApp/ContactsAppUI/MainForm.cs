@@ -121,7 +121,7 @@ namespace ContactsAppUI
             var selectedContact = _project.Contacts[selectedIndex];
             DialogResult = MessageBox.Show("Do you realy want to delete contact " +
                 selectedContact.Name+"  "+selectedContact.Surname+"?",
-                "Внимание", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                "Message", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             if (DialogResult == DialogResult.Yes)
             {
             _project.Contacts.RemoveAt(selectedIndex);
@@ -162,6 +162,11 @@ namespace ContactsAppUI
                 return true;
             }
             return base.ProcessCmdKey(ref msg, keyData);
+        }
+
+        private void splitContainer1_Panel2_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

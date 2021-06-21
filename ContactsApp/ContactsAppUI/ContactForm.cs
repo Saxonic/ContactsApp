@@ -57,7 +57,7 @@ namespace ContactsAppUI
             try
             {
                 var checkDate = BirthdayDateTimePicker.Value;
-                DateValidator.AssertDate(checkDate);
+                _contact.Birthday = checkDate;
                 BirthdayDateTimePicker.CalendarTitleBackColor
                     = Color.White;
             }
@@ -77,8 +77,7 @@ namespace ContactsAppUI
             try
             {
                 var vkID = VkIdTextBox.Text;
-                StringValidator.AssertStringLength(null, 
-                    vkID, Contact.MAXVKLETTERLENGTH);
+                _contact.VkID = vkID;
                 VkIdTextBox.BackColor = Color.White;
             }
             catch (ArgumentException)
@@ -96,8 +95,7 @@ namespace ContactsAppUI
             try
             {
                 var email = EmailTextBox.Text;
-                StringValidator.AssertStringLength(null,
-                    email, Contact.MAXLETTERLENGTH);
+                _contact.Email = email;
                 EmailTextBox.BackColor = Color.White;
             }
             catch (ArgumentException)
@@ -115,9 +113,7 @@ namespace ContactsAppUI
             try
             {
                 var phoneNumber = PhoneTextBox.Text;
-                StringValidator.AssertNumber(Convert.
-                    ToInt64(StringValidator.GetClearNumber(phoneNumber)),
-                    PhoneNumber.NUMBERLENGHT);
+                _contact.PhoneNumber = new PhoneNumber(StringValidator.GetClearNumber(phoneNumber));
                 PhoneTextBox.BackColor = Color.White;
             }
             catch
@@ -135,8 +131,7 @@ namespace ContactsAppUI
             try
             {
                 var name = NameTextBox.Text;
-                StringValidator.AssertStringLength(null,
-                    name, Contact.MAXLETTERLENGTH);
+                _contact.Name = name;
                 NameTextBox.BackColor = Color.White;
             }
             catch (ArgumentException)
@@ -154,8 +149,7 @@ namespace ContactsAppUI
             try
             {
                 var surname = SurnameTextBox.Text;
-                StringValidator.AssertStringLength(null,
-                    surname, Contact.MAXLETTERLENGTH);
+                _contact.Surname = surname;
                 SurnameTextBox.BackColor = Color.White;
             }
             catch (ArgumentException)
@@ -168,15 +162,14 @@ namespace ContactsAppUI
         {
             try
             {
-                PhoneNumber number = new PhoneNumber(
-                    Convert.ToInt64(StringValidator.GetClearNumber(PhoneTextBox.Text)));
-                _contact = new Contact(NameTextBox.Text,
-                    SurnameTextBox.Text, EmailTextBox.Text,
+                PhoneNumber number = new PhoneNumber
+                    (StringValidator.GetClearNumber(PhoneTextBox.Text));
+                _contact = new Contact(NameTextBox.Text, SurnameTextBox.Text, EmailTextBox.Text,
                     VkIdTextBox.Text, BirthdayDateTimePicker.Value,number);
             }
-            catch(ArgumentException)
+            catch(ArgumentException exception)
             {
-                MessageBox.Show("Wrong value!",
+                MessageBox.Show(exception.Message,
                     "Error", MessageBoxButtons.OK);
                 return;
             }
@@ -187,6 +180,11 @@ namespace ContactsAppUI
         {
             Contact = _oldContact;
             DialogResult = DialogResult.Cancel;
+        }
+
+        private void ContactForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

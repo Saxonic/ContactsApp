@@ -75,7 +75,7 @@ namespace ContactsAppUI
             // PhoneLabel
             // 
             this.PhoneLabel.AutoSize = true;
-            this.PhoneLabel.Location = new System.Drawing.Point(47, 111);
+            this.PhoneLabel.Location = new System.Drawing.Point(47, 109);
             this.PhoneLabel.Name = "PhoneLabel";
             this.PhoneLabel.Size = new System.Drawing.Size(59, 20);
             this.PhoneLabel.TabIndex = 23;
@@ -205,6 +205,7 @@ namespace ContactsAppUI
             this.MinimumSize = new System.Drawing.Size(347, 309);
             this.Name = "ContactForm";
             this.Text = "ContactForm";
+            this.Load += new System.EventHandler(this.ContactForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

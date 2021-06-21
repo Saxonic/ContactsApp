@@ -32,6 +32,8 @@ namespace ContactsApp
             }
         }
 
+
+
         /// <summary>
         /// <see cref="PhoneNumber"/> конструктор
         /// </summary>

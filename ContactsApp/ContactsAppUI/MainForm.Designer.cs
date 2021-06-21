@@ -168,7 +168,8 @@ namespace ContactsAppUI
             this.splitContainer1.Panel2.Controls.Add(this.BirthdayLabel);
             this.splitContainer1.Panel2.Controls.Add(this.NameLabel);
             this.splitContainer1.Panel2.Controls.Add(this.SurnameLabel);
-            this.splitContainer1.Size = new System.Drawing.Size(917, 460);
+            this.splitContainer1.Panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer1_Panel2_Paint);
+            this.splitContainer1.Size = new System.Drawing.Size(917, 459);
             this.splitContainer1.SplitterDistance = 305;
             this.splitContainer1.TabIndex = 2;
             // 
@@ -178,7 +179,7 @@ namespace ContactsAppUI
             this.DeleteButton.FlatAppearance.BorderSize = 0;
             this.DeleteButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.DeleteButton.Image = global::ContactsAppUI.Properties.Resources.Delete_16x;
-            this.DeleteButton.Location = new System.Drawing.Point(80, 417);
+            this.DeleteButton.Location = new System.Drawing.Point(80, 387);
             this.DeleteButton.Name = "DeleteButton";
             this.DeleteButton.Size = new System.Drawing.Size(28, 28);
             this.DeleteButton.TabIndex = 9;
@@ -191,7 +192,7 @@ namespace ContactsAppUI
             this.EditButton.FlatAppearance.BorderSize = 0;
             this.EditButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.EditButton.Image = global::ContactsAppUI.Properties.Resources.Edit_16x;
-            this.EditButton.Location = new System.Drawing.Point(46, 417);
+            this.EditButton.Location = new System.Drawing.Point(46, 387);
             this.EditButton.Name = "EditButton";
             this.EditButton.Size = new System.Drawing.Size(28, 28);
             this.EditButton.TabIndex = 8;
@@ -204,7 +205,7 @@ namespace ContactsAppUI
             this.AddButton.FlatAppearance.BorderSize = 0;
             this.AddButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.AddButton.Image = global::ContactsAppUI.Properties.Resources.Add_16x;
-            this.AddButton.Location = new System.Drawing.Point(12, 417);
+            this.AddButton.Location = new System.Drawing.Point(12, 387);
             this.AddButton.Name = "AddButton";
             this.AddButton.Size = new System.Drawing.Size(28, 28);
             this.AddButton.TabIndex = 7;
@@ -230,7 +231,7 @@ namespace ContactsAppUI
             this.ContactsListBox.ItemHeight = 20;
             this.ContactsListBox.Location = new System.Drawing.Point(12, 35);
             this.ContactsListBox.Name = "ContactsListBox";
-            this.ContactsListBox.Size = new System.Drawing.Size(290, 364);
+            this.ContactsListBox.Size = new System.Drawing.Size(290, 344);
             this.ContactsListBox.TabIndex = 6;
             this.ContactsListBox.SelectedIndexChanged += new System.EventHandler(this.ContactsListBox_SelectedIndexChanged);
             // 
@@ -363,7 +364,7 @@ namespace ContactsAppUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(917, 493);
+            this.ClientSize = new System.Drawing.Size(917, 492);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;

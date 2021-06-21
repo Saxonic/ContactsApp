@@ -18,21 +18,21 @@ namespace ContactsApp
         {
             if (checkString.Length > maxLength || checkString.Length == 0)
             {
-                throw new ArgumentException("incorrect value in: " + stringName);
+                throw new ArgumentException(stringName + " must be no longer that "+maxLength);
             }
         }
 
-        public static string GetClearNumber (string number)
+        public static long GetClearNumber(string number)
         {
             string clearNumber = "";
             foreach (var i in number)
             {
-                if (i>='0' && i <='9')
+                if (i >= '0' && i <= '9')
                 {
                     clearNumber += i;
                 }
             }
-            return clearNumber;
+            return long.Parse(clearNumber);
         }
 
         /// <summary>
