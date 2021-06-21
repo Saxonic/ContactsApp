@@ -26,7 +26,7 @@ namespace ContactsApp
         /// <summary>
         /// Содержит путь до файла <see cref="_filePath"/>
         /// </summary>
-        public static readonly string _filePath = _directory + NAME;
+        public static string _filePath = _directory + NAME;
 
         /// <summary>
         /// Реализует сохранение файла
@@ -66,7 +66,7 @@ namespace ContactsApp
             try
             {
                 JsonSerializer serializer = new JsonSerializer();
-                using (StreamReader sr = new StreamReader(_filePath))
+                using (StreamReader sr = new StreamReader(path))
                 using (JsonReader reader = new JsonTextReader(sr))
                 {
                     project = serializer.Deserialize<Project>(reader);
@@ -76,7 +76,7 @@ namespace ContactsApp
                     }
                 }
             }
-            catch
+            catch(JsonSerializationException)
             {
                 return new Project();
             }

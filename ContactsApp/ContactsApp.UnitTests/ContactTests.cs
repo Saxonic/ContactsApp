@@ -1,5 +1,4 @@
-﻿using System;
-using System.Runtime.InteropServices.ComTypes;
+using System;
 using NUnit.Framework;
 using NUnit.Framework.Internal;
 
@@ -10,7 +9,7 @@ namespace ContactsApp.UnitTests
 	{
 		private Contact CreateEmptyContact()
 		{
-			return new Contact(" ", " ", " ", " ", DateTime.Now, 
+			return new Contact(" ", " ", " ", " ", DateTime.Now,
 				new PhoneNumber(70000000000));
 		}
 
