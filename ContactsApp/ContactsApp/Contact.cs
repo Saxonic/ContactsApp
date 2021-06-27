@@ -152,6 +152,18 @@ namespace ContactsApp
             Birthday = birthday;
             PhoneNumber = number;
         }
+        /// <summary>
+        /// конструктор объекта <see cref="Contact"/> по умолчанию
+        /// </summary>
+        public Contact()
+        {
+            Name = "default";
+            Surname = "default";
+            Email = "default";
+            VkID = "default";
+            Birthday = DateTime.Now;
+            PhoneNumber = new PhoneNumber(79999999999);
+        }
 
         /// <summary>
         /// Создает клон объекта <see cref="Contact"/>

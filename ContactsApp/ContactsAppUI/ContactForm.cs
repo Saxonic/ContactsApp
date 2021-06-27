@@ -16,7 +16,7 @@ namespace ContactsAppUI
         /// <summary>
         /// Поле содержащее информацию о контакте
         /// </summary>
-        private Contact _contact;
+        private Contact _contact = new Contact();
         /// <summary>
         /// Поле содержащее бэкап копию контакта
         /// </summary>
