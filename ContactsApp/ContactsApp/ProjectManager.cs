@@ -76,7 +76,7 @@ namespace ContactsApp
                     }
                 }
             }
-            catch(JsonSerializationException)
+            catch
             {
                 return new Project();
             }

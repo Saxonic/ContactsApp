@@ -113,7 +113,8 @@ namespace ContactsAppUI
             try
             {
                 var phoneNumber = PhoneTextBox.Text;
-                _contact.PhoneNumber = new PhoneNumber(StringValidator.GetClearNumber(phoneNumber));
+                _contact.PhoneNumber = new PhoneNumber
+                    (long.Parse(StringValidator.GetClearNumber(phoneNumber)));
                 PhoneTextBox.BackColor = Color.White;
             }
             catch
@@ -163,7 +164,7 @@ namespace ContactsAppUI
             try
             {
                 PhoneNumber number = new PhoneNumber
-                    (StringValidator.GetClearNumber(PhoneTextBox.Text));
+                    (long.Parse(StringValidator.GetClearNumber(PhoneTextBox.Text)));
                 _contact = new Contact(NameTextBox.Text, SurnameTextBox.Text, EmailTextBox.Text,
                     VkIdTextBox.Text, BirthdayDateTimePicker.Value,number);
             }

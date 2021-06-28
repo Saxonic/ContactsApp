@@ -22,7 +22,7 @@ namespace ContactsApp
             }
         }
 
-        public static long GetClearNumber(string number)
+        public static string GetClearNumber(string number)
         {
             string clearNumber = "";
             foreach (var i in number)
@@ -32,7 +32,7 @@ namespace ContactsApp
                     clearNumber += i;
                 }
             }
-            return long.Parse(clearNumber);
+            return clearNumber;
         }
 
         /// <summary>

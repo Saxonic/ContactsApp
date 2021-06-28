@@ -48,38 +48,35 @@ namespace ContactsApp.UnitTests
 		}
 
 		[Test(Description = "Read correct file")]
-		public void TestReadProject_CorrectData()
+		public void Test_ReadProject_Set_CorrectData()
 		{
 			ProjectManager._filePath = _path;
-			var expectedString = File.ReadAllText(_referencePath);
-			var expected = JsonConvert.DeserializeObject<Project>(
-				expectedString);
+			var expected = File.ReadAllText(_referencePath);
 			if (File.Exists(_path))
 			{
 				File.Delete(_path);
 			}
 			File.Create(_path).Close();
-			File.WriteAllText(_path, expectedString);
+			File.WriteAllText(_path, expected);
 			if (File.Exists(_path))
 			{
-				var actual = ProjectManager.Load(ProjectManager._filePath);
-				var actualString = File.ReadAllText(_path);
-				Assert.AreEqual(expectedString, actualString,
+				var actualObject = ProjectManager.Load(ProjectManager._filePath);
+				var actual = JsonConvert.SerializeObject(actualObject);
+				Assert.AreEqual(expected, actual,
 					"Values are not the same");
 			}
 		}
 
 		[Test(Description = "Read broken  file")]
-		public void TestReadProject_BrokenData()
+		public void Test_ReadProject_BrokenData()
 		{
 			var expected = JsonConvert.SerializeObject(new Project());
 
 			ProjectManager._filePath = _referenceBrokenPath;
-			var actual = JsonConvert.SerializeObject(
-				ProjectManager.Load(ProjectManager._filePath));
+			var actualObject = ProjectManager.Load(ProjectManager._filePath);
+			var actual = JsonConvert.SerializeObject(actualObject);
 
-			Assert.AreEqual(expected, actual,
-				"Project is readed");
+			Assert.AreEqual(expected, actual);
 		}
 
 		[Test(Description = "Try to read nonexistent file")]
@@ -105,16 +102,14 @@ namespace ContactsApp.UnitTests
 				File.Delete(_path);
 			}
 			File.Create(_path).Close();
-			var expectedString = File.ReadAllText(_referencePath);
-			var expected = JsonConvert.DeserializeObject<Project>(
-				expectedString);
-			ProjectManager.Save(expected, ProjectManager._filePath);
+			var expected = File.ReadAllText(_referencePath);
+			var expectedObject = JsonConvert.DeserializeObject<Project>(
+				expected);
+			ProjectManager.Save(expectedObject, ProjectManager._filePath);
 			if (File.Exists(_path))
 			{
-				var actualString = File.ReadAllText(_path);
-				var actual = JsonConvert.DeserializeObject<Project>(
-				actualString);
-				Assert.AreEqual(expectedString, actualString,
+				var actual = File.ReadAllText(_path);
+				Assert.AreEqual(expected, actual,
 					"Values are not the same");
 			}
 		}
@@ -128,17 +123,15 @@ namespace ContactsApp.UnitTests
 			{
 				File.Delete(_path);
 			}
-			var expectedString = File.ReadAllText(_referencePath);
-			var expected = JsonConvert.DeserializeObject<Project>(
-				expectedString);
-			ProjectManager.Save(expected, ProjectManager._filePath);
+			var expected = File.ReadAllText(_referencePath);
+			var expectedObject = JsonConvert.DeserializeObject<Project>(
+				expected);
+			ProjectManager.Save(expectedObject, ProjectManager._filePath);
 			if (File.Exists(ProjectManager._filePath))
 			{
-				var actualString = File.ReadAllText(
+				var actual = File.ReadAllText(
 					ProjectManager._filePath);
-				var actual = JsonConvert.DeserializeObject<Project>(
-				actualString);
-				Assert.AreEqual(expectedString, actualString,
+				Assert.AreEqual(expected, actual,
 					"Values are not the same");
 			}
 		}
