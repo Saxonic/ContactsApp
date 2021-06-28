@@ -24,13 +24,22 @@ namespace ContactsApp
         {
             return Contacts.OrderBy(contact => contact.Surname).ToList();
         }
-
+        /// <summary>
+        /// Выдает список контактов, в которых содержится передаваемся строка
+        /// </summary>
+        /// <param name="substring"></param>
+        /// <returns></returns>
         public List<Contact> AlphabetSort(string substring)
         {
             var sorted = AlphabetSort();
             return sorted.Where(contact => contact.Surname.Contains(substring) 
             || contact.Name.Contains(substring)).ToList();
         }
+        /// <summary>
+        /// Выполняет поиск именинников на указанную дату
+        /// </summary>
+        /// <param name="date"></param>
+        /// <returns></returns>
         public List<Contact> FindBirthdayContacts(DateTime date)
         {
             return Contacts.Where(contact => contact.Birthday.Day == date.Day

@@ -33,7 +33,7 @@ namespace ContactsAppUI
                 MessageBox.Show(exception.Message, "Error", MessageBoxButtons.OK);
                 _project = new Project();
             }
-            BirthdayInfoLabel.Text = "Today birthday have:\n";
+            BirthdayInfoLabel.Text = "Сегодня день рождения: \n";
             var birthdayContacts = _project.FindBirthdayContacts(DateTime.Now);
             if (birthdayContacts.Count != 0)
             {
@@ -263,9 +263,9 @@ namespace ContactsAppUI
            
         }
 
-        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        private void BirthdayInfoLabel_Click(object sender, EventArgs e)
         {
-
+            
         }
     }
 }

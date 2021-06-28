@@ -116,5 +116,8 @@
   <ItemGroup>
     <None Include="Resources\Delete_16x.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ExclamationMark.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
