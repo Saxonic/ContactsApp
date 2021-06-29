@@ -27,7 +27,7 @@ ChangesAssociations=yes
 DisableProgramGroupPage=yes
 ; Uncomment the following line to run in non administrative install mode (install for current user only.)
 ;PrivilegesRequired=lowest
-OutputDir=D:\”чеба\6 семестр\Ќ“вѕ\ContactsApp\ContactsApp\InstallScripts\Installers
+OutputDir=Installers
 OutputBaseFilename=mysetup
 Compression=lzma
 SolidCompression=yes
