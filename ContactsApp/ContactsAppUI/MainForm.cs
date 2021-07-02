@@ -2,7 +2,7 @@
 using ContactsApp;
 using System.Windows.Forms;
 using System.Collections.Generic;
-using System.Drawing;
+using System.Linq;
 
 namespace ContactsAppUI
 {
@@ -12,10 +12,12 @@ namespace ContactsAppUI
         /// Содержит все данные о проекте
         /// </summary>
         private Project _project;
+
         /// <summary>
         /// Вспомогательный список для поиска
         /// </summary>
         private List<Contact> _contacts;
+
         public MainForm()
         {
             InitializeComponent();
@@ -37,36 +39,37 @@ namespace ContactsAppUI
             var birthdayContacts = _project.FindBirthdayContacts(DateTime.Now);
             if (birthdayContacts.Count != 0)
             {
-                for (int i = 0; i < birthdayContacts.Count - 1; i++)
-                {
-                    BirthdayInfoLabel.Text += birthdayContacts[i].Surname + ", ";
-                }
-
+                BirthdayInfoLabel.Text += string.Join(", ", birthdayContacts.
+                    Select(contact=>contact.Surname));
                 BirthdayInfoLabel.Text += birthdayContacts[birthdayContacts.Count - 1].Surname;
             }
             else
             {
-                Controls.Remove(birthdayTableLayoutPanel);
+                birthdayTableLayoutPanel.Visible = false;
             }
             UpdateListBox();
             ContactsListBox.ClearSelected();
         }
 
-        private void SearchContact()
+        /// <summary>
+        /// Выполняет сортировку контактов по алфавиту
+        /// </summary>
+        private void СontactSort()
         {
             if(SearchTextBox.Text.Length == 0)
             {
-                _contacts = _project.AlphabetSort();
+                _contacts = _project.OrderBySurname();
             }
             else if (SearchTextBox.Text.Length !=0)
             {
-                _contacts = _project.AlphabetSort(SearchTextBox.Text);
+                _contacts = _project.FindByNameAndSurname(SearchTextBox.Text);
             }
         }
+
         /// <summary>
         /// Очищает поля textBox
         /// </summary>
-        private void ClearTextBox()
+        private void ClearRightPanel()
         {
             SurnameTextBox.Clear();
             NameTextBox.Clear();
@@ -75,14 +78,19 @@ namespace ContactsAppUI
             EmailTextBox.Clear();
             VkIdTextBox.Clear();
         }
+
+        /// <summary>
+        /// Обновление ListBox
+        /// </summary>
         private void UpdateListBox()
         {
-            SearchContact();
+            СontactSort();
             ContactsListBox.DataSource = null;
             ContactsListBox.DataSource = _contacts;
             ContactsListBox.DisplayMember = nameof(Contact.Surname);
             ContactsListBox.ValueMember = nameof(Contact.PhoneNumber);
         }
+
         /// <summary>
         /// Обновляет поля TextBox на новые значения
         /// </summary>
@@ -122,11 +130,7 @@ namespace ContactsAppUI
                 ProjectManager.Save(_project, ProjectManager._filePath);
                 UpdateListBox();
                 ContactsListBox.ClearSelected();
-                ClearTextBox();
-            }
-            else
-            {
-                return;
+                ClearRightPanel();
             }
         }
 
@@ -177,11 +181,10 @@ namespace ContactsAppUI
                 ContactsListBox.SelectedIndex = _contacts.IndexOf(newContact);
             }
         }
+
         /// <summary>
         /// Обновляет поле ListBox на новые значения
         /// </summary>
-        /// <param name="contacts"></param>
-
         private void ContactsListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             var selectedIndex = ContactsListBox.SelectedIndex;

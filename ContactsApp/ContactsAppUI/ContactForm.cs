@@ -1,12 +1,6 @@
 ﻿using ContactsApp;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ContactsAppUI
@@ -17,10 +11,15 @@ namespace ContactsAppUI
         /// Поле содержащее информацию о контакте
         /// </summary>
         private Contact _contact = new Contact();
+
         /// <summary>
         /// Поле содержащее бэкап копию контакта
         /// </summary>
-        private Contact _oldContact;
+        private Contact _contactClone;
+
+        private readonly Color _rightValueColor = Color.White;
+        private readonly Color _wrongValueColor = Color.LightSalmon;
+
         public ContactForm()
         {
             InitializeComponent();
@@ -43,7 +42,7 @@ namespace ContactsAppUI
                         .Number.ToString();
                     EmailTextBox.Text = _contact.Email;
                     VkIdTextBox.Text = _contact.VkID;
-                    _oldContact = (Contact)_contact.Clone();
+                    _contactClone = (Contact)_contact.Clone();
                 }
             }
         }
@@ -59,12 +58,12 @@ namespace ContactsAppUI
                 var checkDate = BirthdayDateTimePicker.Value;
                 _contact.Birthday = checkDate;
                 BirthdayDateTimePicker.CalendarTitleBackColor
-                    = Color.White;
+                    = _rightValueColor;
             }
             catch (ArgumentException)
             {
                 BirthdayDateTimePicker.CalendarTitleBackColor
-                    = Color.LightSalmon;
+                    = _wrongValueColor;
             }
         }
         /// <summary>
@@ -78,11 +77,11 @@ namespace ContactsAppUI
             {
                 var vkID = VkIdTextBox.Text;
                 _contact.VkID = vkID;
-                VkIdTextBox.BackColor = Color.White;
+                VkIdTextBox.BackColor = _rightValueColor;
             }
             catch (ArgumentException)
             {
-                VkIdTextBox.BackColor = Color.LightSalmon;
+                VkIdTextBox.BackColor = _wrongValueColor;
             }
         }
         /// <summary>
@@ -96,11 +95,11 @@ namespace ContactsAppUI
             {
                 var email = EmailTextBox.Text;
                 _contact.Email = email;
-                EmailTextBox.BackColor = Color.White;
+                EmailTextBox.BackColor = _rightValueColor;
             }
             catch (ArgumentException)
             {
-                EmailTextBox.BackColor = Color.LightSalmon;
+                EmailTextBox.BackColor = _wrongValueColor;
             }
         }
         /// <summary>
@@ -115,11 +114,11 @@ namespace ContactsAppUI
                 var phoneNumber = PhoneTextBox.Text;
                 _contact.PhoneNumber = new PhoneNumber
                     (long.Parse(StringValidator.GetClearNumber(phoneNumber)));
-                PhoneTextBox.BackColor = Color.White;
+                PhoneTextBox.BackColor = _rightValueColor;
             }
             catch
             {
-                PhoneTextBox.BackColor = Color.LightSalmon;
+                PhoneTextBox.BackColor = _wrongValueColor;
             }
         }
         /// <summary>
@@ -133,11 +132,11 @@ namespace ContactsAppUI
             {
                 var name = NameTextBox.Text;
                 _contact.Name = name;
-                NameTextBox.BackColor = Color.White;
+                NameTextBox.BackColor = _rightValueColor;
             }
             catch (ArgumentException)
             {
-                NameTextBox.BackColor = Color.LightSalmon;
+                NameTextBox.BackColor = _wrongValueColor;
             }
         }
         /// <summary>
@@ -151,11 +150,11 @@ namespace ContactsAppUI
             {
                 var surname = SurnameTextBox.Text;
                 _contact.Surname = surname;
-                SurnameTextBox.BackColor = Color.White;
+                SurnameTextBox.BackColor = _rightValueColor;
             }
             catch (ArgumentException)
             {
-                SurnameTextBox.BackColor = Color.LightSalmon;
+                SurnameTextBox.BackColor = _wrongValueColor;
             }
         }
 
@@ -179,13 +178,8 @@ namespace ContactsAppUI
 
         private void CancelButton_Click(object sender, EventArgs e)
         {
-            Contact = _oldContact;
+            Contact = _contactClone;
             DialogResult = DialogResult.Cancel;
-        }
-
-        private void ContactForm_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }

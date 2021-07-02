@@ -1,12 +1,11 @@
 ﻿using System;
 using System.IO;
-using System.Text;
 using Newtonsoft.Json;
 
 namespace ContactsApp
 {
     /// <summary>
-    /// Класс <see cref=""/> вполняет сохранение и
+    /// Класс <see cref="ProjectManager"/> вполняет сохранение и
     /// загрузку <see cref="Project"/> в файл.
     /// </summary>
     public static class ProjectManager
@@ -32,6 +31,7 @@ namespace ContactsApp
         /// Реализует сохранение файла
         /// </summary>
         /// <param name="project"></param>
+        /// <param name="path"></param>
         public static void Save(Project project, string path)
         {
             string directory = Path.GetDirectoryName(path);
@@ -55,7 +55,6 @@ namespace ContactsApp
         /// </returns>
         public static Project Load(string path)
         {
-            string directory = Path.GetDirectoryName(path);
             Project project = new Project();
 
             if (!File.Exists(path))

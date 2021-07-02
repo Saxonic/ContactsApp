@@ -53,7 +53,7 @@ namespace ContactsApp.UnitTests
 			var expected = JsonConvert.SerializeObject(expectedList);
 
 			var actualList = new Project();
-			actualList.Contacts = project.AlphabetSort();
+			actualList.Contacts = project.OrderBySurname();
 			var actual = JsonConvert.SerializeObject(actualList);
 
 			Assert.AreEqual(expected,
@@ -67,7 +67,7 @@ namespace ContactsApp.UnitTests
 
 			var excepted = new List<Contact>();
 
-			var actual = project.AlphabetSort();
+			var actual = project.OrderBySurname();
 
 			Assert.AreEqual(excepted, actual,
 				"Don't Contain Values");
@@ -99,7 +99,7 @@ namespace ContactsApp.UnitTests
 			};
 
 			var actual = new Project();
-			actual.Contacts = project.AlphabetSort("C");
+			actual.Contacts = project.FindByNameAndSurname("C");
 
 			Assert.AreEqual(expected.Contacts[0].Surname,
 				actual.Contacts[0].Surname, "Dotes not sorted");
@@ -112,7 +112,7 @@ namespace ContactsApp.UnitTests
 
 			var excepted = new List<Contact>();
 
-			var actual = project.AlphabetSort("A");
+			var actual = project.FindByNameAndSurname("A");
 
 			Assert.AreEqual(excepted, actual,
 				"Don't Contain Values");

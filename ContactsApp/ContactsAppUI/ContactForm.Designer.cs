@@ -224,7 +224,6 @@ namespace ContactsAppUI
             this.MinimumSize = new System.Drawing.Size(237, 221);
             this.Name = "ContactForm";
             this.Text = "ContactForm";
-            this.Load += new System.EventHandler(this.ContactForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

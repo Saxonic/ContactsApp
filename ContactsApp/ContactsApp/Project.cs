@@ -20,21 +20,23 @@ namespace ContactsApp
         /// <returns>
         /// Сортированный список
         /// </returns>
-        public List<Contact> AlphabetSort()
+        public List<Contact> OrderBySurname()
         {
             return Contacts.OrderBy(contact => contact.Surname).ToList();
         }
+
         /// <summary>
         /// Выдает список контактов, в которых содержится передаваемся строка
         /// </summary>
         /// <param name="substring"></param>
         /// <returns></returns>
-        public List<Contact> AlphabetSort(string substring)
+        public List<Contact> FindByNameAndSurname(string substring)
         {
-            var sorted = AlphabetSort();
+            var sorted = OrderBySurname();
             return sorted.Where(contact => contact.Surname.Contains(substring) 
             || contact.Name.Contains(substring)).ToList();
         }
+
         /// <summary>
         /// Выполняет поиск именинников на указанную дату
         /// </summary>
