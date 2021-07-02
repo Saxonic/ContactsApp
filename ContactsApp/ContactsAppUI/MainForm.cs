@@ -258,14 +258,6 @@ namespace ContactsAppUI
             UpdateListBox();
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-           
-        }
 
-        private void BirthdayInfoLabel_Click(object sender, EventArgs e)
-        {
-            
-        }
     }
 }
