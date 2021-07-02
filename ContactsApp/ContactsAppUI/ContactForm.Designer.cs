@@ -93,7 +93,7 @@ namespace ContactsAppUI
             this.VkIdTextBox.Location = new System.Drawing.Point(76, 128);
             this.VkIdTextBox.Margin = new System.Windows.Forms.Padding(2);
             this.VkIdTextBox.Name = "VkIdTextBox";
-            this.VkIdTextBox.Size = new System.Drawing.Size(508, 20);
+            this.VkIdTextBox.Size = new System.Drawing.Size(138, 20);
             this.VkIdTextBox.TabIndex = 22;
             this.VkIdTextBox.TextChanged += new System.EventHandler(this.VkIdTextBox_TextChanged);
             // 
@@ -105,7 +105,7 @@ namespace ContactsAppUI
             this.EmailTextBox.Location = new System.Drawing.Point(76, 104);
             this.EmailTextBox.Margin = new System.Windows.Forms.Padding(2);
             this.EmailTextBox.Name = "EmailTextBox";
-            this.EmailTextBox.Size = new System.Drawing.Size(508, 20);
+            this.EmailTextBox.Size = new System.Drawing.Size(138, 20);
             this.EmailTextBox.TabIndex = 21;
             this.EmailTextBox.TextChanged += new System.EventHandler(this.EmailTextBox_TextChanged);
             // 
@@ -117,7 +117,7 @@ namespace ContactsAppUI
             this.NameTextBox.Location = new System.Drawing.Point(76, 32);
             this.NameTextBox.Margin = new System.Windows.Forms.Padding(2);
             this.NameTextBox.Name = "NameTextBox";
-            this.NameTextBox.Size = new System.Drawing.Size(508, 20);
+            this.NameTextBox.Size = new System.Drawing.Size(138, 20);
             this.NameTextBox.TabIndex = 19;
             this.NameTextBox.TextChanged += new System.EventHandler(this.NameTextBox_TextChanged);
             // 
@@ -129,7 +129,7 @@ namespace ContactsAppUI
             this.SurnameTextBox.Location = new System.Drawing.Point(76, 8);
             this.SurnameTextBox.Margin = new System.Windows.Forms.Padding(2);
             this.SurnameTextBox.Name = "SurnameTextBox";
-            this.SurnameTextBox.Size = new System.Drawing.Size(508, 20);
+            this.SurnameTextBox.Size = new System.Drawing.Size(138, 20);
             this.SurnameTextBox.TabIndex = 18;
             this.SurnameTextBox.TextChanged += new System.EventHandler(this.SurnameTextBox_TextChanged);
             // 
@@ -166,7 +166,7 @@ namespace ContactsAppUI
             // CancelButton
             // 
             this.CancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.CancelButton.Location = new System.Drawing.Point(520, 152);
+            this.CancelButton.Location = new System.Drawing.Point(150, 152);
             this.CancelButton.Margin = new System.Windows.Forms.Padding(2);
             this.CancelButton.Name = "CancelButton";
             this.CancelButton.Size = new System.Drawing.Size(65, 20);
@@ -178,7 +178,7 @@ namespace ContactsAppUI
             // OkButton
             // 
             this.OkButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.OkButton.Location = new System.Drawing.Point(451, 152);
+            this.OkButton.Location = new System.Drawing.Point(81, 152);
             this.OkButton.Margin = new System.Windows.Forms.Padding(2);
             this.OkButton.Name = "OkButton";
             this.OkButton.Size = new System.Drawing.Size(65, 20);
@@ -196,7 +196,7 @@ namespace ContactsAppUI
             this.PhoneTextBox.Margin = new System.Windows.Forms.Padding(2);
             this.PhoneTextBox.Mask = "7(999) 999-99-99";
             this.PhoneTextBox.Name = "PhoneTextBox";
-            this.PhoneTextBox.Size = new System.Drawing.Size(508, 20);
+            this.PhoneTextBox.Size = new System.Drawing.Size(138, 20);
             this.PhoneTextBox.TabIndex = 29;
             this.PhoneTextBox.TextChanged += new System.EventHandler(this.PhoneTextBox_TextChanged);
             // 
@@ -204,7 +204,7 @@ namespace ContactsAppUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(595, 182);
+            this.ClientSize = new System.Drawing.Size(225, 182);
             this.Controls.Add(this.PhoneTextBox);
             this.Controls.Add(this.OkButton);
             this.Controls.Add(this.CancelButton);
@@ -221,7 +221,7 @@ namespace ContactsAppUI
             this.Controls.Add(this.SurnameLabel);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(2);
-            this.MinimumSize = new System.Drawing.Size(237, 221);
+            this.MinimumSize = new System.Drawing.Size(241, 221);
             this.Name = "ContactForm";
             this.Text = "ContactForm";
             this.ResumeLayout(false);

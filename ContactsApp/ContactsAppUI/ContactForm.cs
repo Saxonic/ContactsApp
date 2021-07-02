@@ -15,7 +15,7 @@ namespace ContactsAppUI
         /// <summary>
         /// Поле содержащее бэкап копию контакта
         /// </summary>
-        private Contact _contactClone;
+        private Contact _contactClone = new Contact();
 
         private readonly Color _rightValueColor = Color.White;
         private readonly Color _wrongValueColor = Color.LightSalmon;
@@ -56,7 +56,7 @@ namespace ContactsAppUI
             try
             {
                 var checkDate = BirthdayDateTimePicker.Value;
-                _contact.Birthday = checkDate;
+                _contactClone.Birthday = checkDate;
                 BirthdayDateTimePicker.CalendarTitleBackColor
                     = _rightValueColor;
             }
@@ -76,7 +76,7 @@ namespace ContactsAppUI
             try
             {
                 var vkID = VkIdTextBox.Text;
-                _contact.VkID = vkID;
+                _contactClone.VkID = vkID;
                 VkIdTextBox.BackColor = _rightValueColor;
             }
             catch (ArgumentException)
@@ -94,7 +94,7 @@ namespace ContactsAppUI
             try
             {
                 var email = EmailTextBox.Text;
-                _contact.Email = email;
+                _contactClone.Email = email;
                 EmailTextBox.BackColor = _rightValueColor;
             }
             catch (ArgumentException)
@@ -112,7 +112,7 @@ namespace ContactsAppUI
             try
             {
                 var phoneNumber = PhoneTextBox.Text;
-                _contact.PhoneNumber = new PhoneNumber
+                _contactClone.PhoneNumber = new PhoneNumber
                     (long.Parse(StringValidator.GetClearNumber(phoneNumber)));
                 PhoneTextBox.BackColor = _rightValueColor;
             }
@@ -131,7 +131,7 @@ namespace ContactsAppUI
             try
             {
                 var name = NameTextBox.Text;
-                _contact.Name = name;
+                _contactClone.Name = name;
                 NameTextBox.BackColor = _rightValueColor;
             }
             catch (ArgumentException)
@@ -149,7 +149,7 @@ namespace ContactsAppUI
             try
             {
                 var surname = SurnameTextBox.Text;
-                _contact.Surname = surname;
+                _contactClone.Surname = surname;
                 SurnameTextBox.BackColor = _rightValueColor;
             }
             catch (ArgumentException)
@@ -178,7 +178,7 @@ namespace ContactsAppUI
 
         private void CancelButton_Click(object sender, EventArgs e)
         {
-            Contact = _contactClone;
+            _contact = _contactClone;
             DialogResult = DialogResult.Cancel;
         }
     }

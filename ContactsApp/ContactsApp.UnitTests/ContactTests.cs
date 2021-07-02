@@ -1,6 +1,5 @@
 using System;
 using NUnit.Framework;
-using NUnit.Framework.Internal;
 
 namespace ContactsApp.UnitTests
 {
@@ -266,10 +265,10 @@ namespace ContactsApp.UnitTests
 			var expectedVkId = "VkId";
 
 			Assert.DoesNotThrow(() =>
-			{
-				var contact = new Contact(expectedName, expectedSurname, expectedEmail,
-					expectedVkId, expectedBirthday, expectedPhoneNumber);
-			}, "The constructor did not work");
+            {
+                var contact = new Contact(expectedName, expectedSurname, expectedEmail,
+                    expectedVkId, expectedBirthday, expectedPhoneNumber);
+            }, "The constructor did not work");
 		}
 		//Test Constructor end
 	}

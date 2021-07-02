@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Runtime.InteropServices.ComTypes;
 using NUnit.Framework;
 
 namespace ContactsApp.UnitTests
@@ -54,7 +53,7 @@ namespace ContactsApp.UnitTests
 		{
 			var number = 78005553535;
 			Assert.DoesNotThrow(
-				() => { var phoneNumber = new PhoneNumber(number); },
+				() => { new PhoneNumber(number); },
 				"Constructor is not passed");
 		}
 	}
