@@ -7,7 +7,7 @@ namespace ContactsApp
     /// <summary>
     /// Класс <see cref="Contact"/> содержит информацию о контакте
     /// </summary>
-    public class Contact : ICloneable
+    public class Contact : ICloneable, IEquatable<Contact>
     {
         /// <summary>
         /// Содержит имя
@@ -173,6 +173,40 @@ namespace ContactsApp
         {
             return new Contact(this.Name, this.Surname, this.Email, this.VkID, 
                 this.Birthday, new PhoneNumber(this.PhoneNumber.Number));
+        }
+
+        public bool Equals(Contact other)
+        {
+            if (ReferenceEquals(null, other)) return false;
+            if (ReferenceEquals(this, other)) return true;
+            return _name == other._name 
+                   && _surname == other._surname
+                   && _email == other._email 
+                   && _vkID == other._vkID 
+                   && _birthday.Equals(other._birthday) 
+                   && Equals(PhoneNumber, other.PhoneNumber);
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(null, obj)) return false;
+            if (ReferenceEquals(this, obj)) return true;
+            if (obj.GetType() != this.GetType()) return false;
+            return Equals((Contact) obj);
+        }
+
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                var hashCode = (_name != null ? _name.GetHashCode() : 0);
+                hashCode = (hashCode * 397) ^ (_surname != null ? _surname.GetHashCode() : 0);
+                hashCode = (hashCode * 397) ^ (_email != null ? _email.GetHashCode() : 0);
+                hashCode = (hashCode * 397) ^ (_vkID != null ? _vkID.GetHashCode() : 0);
+                hashCode = (hashCode * 397) ^ _birthday.GetHashCode();
+                hashCode = (hashCode * 397) ^ (PhoneNumber != null ? PhoneNumber.GetHashCode() : 0);
+                return hashCode;
+            }
         }
     }
 }

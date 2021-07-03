@@ -47,6 +47,5 @@ namespace ContactsApp
             return Contacts.Where(contact => contact.Birthday.Day == date.Day
             && contact.Birthday.Month == date.Month).ToList();
         }
-
     }
 }
