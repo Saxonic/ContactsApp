@@ -14,246 +14,320 @@ namespace ContactsApp.UnitTests
 
 		//Test Name start
 		[Test(Description = "Positive test of the Name getter")]
-		public void TestNameGet_CorrectValue()
+		public void TestNameGet_ReturnCorrectValue()
 		{
+            //setup
 			var expected = "Name";
-
 			var contact = CreateEmptyContact();
+			
+			//act
 			contact.Name = expected;
 
-			var actual = contact.Name;
-
-			Assert.AreEqual(expected, actual,
-				"Getter Name returns incorrect value");
+			//assert
+            var actual = contact.Name;
+            Assert.AreEqual(expected, actual);
 		}
 
-		[TestCase("", "Name is not empty",
-			TestName = "Assignment of the Name is empty")]
-		[TestCase("NameNameNameNameNameNameNameNameNameNameNameNameNameName",
-			"Name is not large of max value",
-			TestName = "Assignment of the Name is large of max value")]
-		public void TestNameSet_ArgumentException(string wrongValue,
-			string message)
+		[Test(Description = "Negative test of Name setter")]
+		public void NameSet_EmptyName_ArgumentException()
 		{
-			var contact = CreateEmptyContact();
-			Assert.Throws<ArgumentException>(
-				() => { contact.Name = wrongValue; },
-				message);
+            //setup
+            var contact = CreateEmptyContact();
+            var emptyName = "";
+
+			//assert
+            Assert.Throws<ArgumentException>(
+				() => { contact.Name = emptyName; });
 		}
+
+        [Test(Description = "Negative test of Name setter")]
+        public void NameSet_ToLongName_ArgumentException()
+        {
+            //setup
+            var contact = CreateEmptyContact();
+            var emptyName = "MichailMichailMichailMichailMichailMichailMichailMichailMichailMichail";
+
+            //assert
+            Assert.Throws<ArgumentException>(
+                () => { contact.Name = emptyName; });
+        }
 
 		[Test(Description = "Positive test of the Name setter")]
-		public void TestNameSet_CorrectValue()
+		public void NameSet_CorrectValue_DoesNotThrowException()
 		{
+			//setup
 			var contact = CreateEmptyContact();
 			var name = "Name";
+
+			//assert
 			Assert.DoesNotThrow(
-				() => { contact.Name = name; },
-				"Positive test of the Name setter not passed");
+				() => { contact.Name = name; });
 		}
 		//Test Name end
 
 		//Test Surname start
 		[Test(Description = "Positive test of the Surname getter")]
-		public void TestSurnameGet_CorrectValue()
+		public void SurnameGet_ReturnCorrectSurname()
 		{
+			//setup
 			var expected = "Surname";
-
-			var contact = CreateEmptyContact();
+            var contact = CreateEmptyContact();
 			contact.Surname = expected;
 
+			//act
 			var actual = contact.Surname;
-
+			
+			//assert
 			Assert.AreEqual(expected, actual,
 				"Getter Surname returns incorrect value");
 		}
-
-		[TestCase("", "Surname is not empty",
-			TestName = "Assignment of the Surname is empty")]
-		[TestCase("SurnameSurnameSurnameSurnameSurnameSurnameSurnameSurname",
-			"Surname is not large of max value",
-			TestName = "Assignment of the Surname is large of max value")]
-		public void TestSurnameSet_ArgumentException(string wrongValue,
-			string message)
+		
+		[Test(Description = "Negative test of Surname setter")]
+		public void TestSurnameSet_EmptySurname_ArgumentException()
 		{
+            //setup
 			var contact = CreateEmptyContact();
+            var wrongSurname = "";
+
+			//assert
 			Assert.Throws<ArgumentException>(
-				() => { contact.Surname = wrongValue; },
-				message);
+				() => { contact.Surname = wrongSurname; });
 		}
+
+        [Test(Description = "Negative test of Surname setter")]
+        public void TestSurnameSet_ToLongSurname_ArgumentException()
+        {
+            //setup
+            var contact = CreateEmptyContact();
+            var wrongSurname = "MichalkovMichalkovMichalkovMichalkovMichalkovMichalkovMichalkovMichalkov";
+
+            //assert
+            Assert.Throws<ArgumentException>(
+                () => { contact.Surname = wrongSurname; });
+        }
 
 		[Test(Description = "Positive test of the Surname setter")]
-		public void TestSurnameSet_CorrectValue()
+		public void SurnameSet_CorrectValue_DoesNotThrowException()
 		{
+            //setup
 			var contact = CreateEmptyContact();
 			var surname = "Surname";
+
+            //assert
 			Assert.DoesNotThrow(
-				() => { contact.Surname = surname; },
-				"Positive test of the Surname setter not passed");
+				() => { contact.Surname = surname; });
 		}
-		//Test Surname End
 
-		//Test Email start
-		[Test(Description = "Positive test of the Email getter")]
-		public void TestEmailGet_CorrectValue()
+
+        [Test(Description = "Positive test of the Email getter")]
+		public void EmailGet_ReturnCorrectValue()
 		{
+			//setup
 			var expected = "Email";
-
-			var contact = CreateEmptyContact();
+            var contact = CreateEmptyContact();
 			contact.Email = expected;
 
+			//act
 			var actual = contact.Email;
 
-			Assert.AreEqual(expected, actual,
-				"Getter Email returns incorrect value");
+			//assert
+			Assert.AreEqual(expected, actual);
 		}
 
-		[TestCase("", "Email is not empty",
-			TestName = "Assignment of the Email is empty")]
-		[TestCase("EmailEmailEmailEmailEmailEmailEmailEmailEmailEmailEmailEmail",
-			"Email is not large of max value",
-			TestName = "Assignment of the Email is large of max value")]
-		public void TestEmailSet_ArgumentException(string wrongValue,
-			string message)
+		[Test(Description ="Negative test of email setter")]
+		public void EmailSet_EmptyEmail_ArgumentException()
 		{
+			//setup
 			var contact = CreateEmptyContact();
+            var emptyEmail = "";
+
+			//assert
 			Assert.Throws<ArgumentException>(
-				() => { contact.Email = wrongValue; },
-				message);
+				() => { contact.Email = emptyEmail; });
 		}
+
+        [Test(Description = "Negative test of email setter")]
+        public void EmailSet_ToLongEmail_ArgumentException()
+        {
+            //setup
+            var contact = CreateEmptyContact();
+            var emptyEmail = "parenparparenparenenparenparenparenparparenparenenp@gmail.com";
+
+            //assert
+            Assert.Throws<ArgumentException>(
+                () => { contact.Email = emptyEmail; });
+        }
 
 		[Test(Description = "Positive test of the Email setter")]
-		public void TestEmailSet_CorrectValue()
+		public void EmailSet_CorrectValue_DoesNotThrowException()
 		{
+            //setup
 			var contact = CreateEmptyContact();
 			var email = "Email";
+
+			//assert
 			Assert.DoesNotThrow(
-				() => { contact.Email = email; },
-				"Positive test of the Email setter not passed");
+				() => { contact.Email = email; });
 		}
-		//Test Email end
 
-		//Test VkID start
+        //Test VkID start
 		[Test(Description = "Positive test of the VKID getter")]
-		public void TestVKIDGet_CorrectValue()
+		public void VKIDGet_ReturnCorrectValue()
 		{
+			//setup
 			var expected = "VKID";
-
-			var contact = CreateEmptyContact();
+            var contact = CreateEmptyContact();
 			contact.VkID = expected;
 
+            //act
 			var actual = contact.VkID;
 
-			Assert.AreEqual(expected, actual,
-				"Getter VKID returns incorrect value");
+			//assert
+			Assert.AreEqual(expected, actual);
 		}
 
-		[TestCase("", "VKID is not empty",
-			TestName = "Assignment of the VKID is empty")]
-		[TestCase("1234567890qwertyui",
-			"VKID is not large of max value",
-			TestName = "Assignment of the VKID is large of max value")]
-		public void TestVKIDSet_ArgumentException(string wrongValue,
-			string message)
+        [Test(Description = "Negative VkID setter test")]
+		public void VKIDSet_EmptyVkId_ArgumentException()
 		{
+			//setup
 			var contact = CreateEmptyContact();
+            var emptyVkId = "";
+
+            //assert
 			Assert.Throws<ArgumentException>(
-				() => { contact.VkID = wrongValue; },
-				message);
+                () => { contact.VkID = emptyVkId; });
 		}
+
+        [Test(Description = "Negative VkID setter test")]
+        public void VKIDSet_LongVkId_ArgumentException()
+        {
+            //setup
+            var contact = CreateEmptyContact();
+            var LongVkId = "vkIDvkIDvkIDvkIDvkIDvkIDvkID";
+
+            //assert
+            Assert.Throws<ArgumentException>(
+                () => { contact.VkID = LongVkId; });
+        }
 
 		[Test(Description = "Positive test of the VKID setter")]
-		public void TestVKIDSet_CorrectValue()
+		public void VKIDSet_CorrectValue_DoesNotTrowException()
 		{
+			//setup
 			var contact = CreateEmptyContact();
 			var vkid = "VKID";
+
+			//Assert
 			Assert.DoesNotThrow(
-				() => { contact.Name = vkid; },
-				"Positive test of the VKID setter not passed");
+				() => { contact.Name = vkid; });
 		}
-		//Test VkId end
 
-		//Test PhoneNumber start
 		[Test(Description = "Positive test of the PhoneNumber getter")]
-		public void TestPhoneNumberGet_CorrectValue()
-		{
+		public void PhoneNumberGet_ReturnCorrectValue()
+        {
+            //setup
 			var expected = new PhoneNumber(78005553535);
-
-			var contact = CreateEmptyContact();
+            var contact = CreateEmptyContact();
 			contact.PhoneNumber = expected;
 
+			//act
 			var actual = contact.PhoneNumber;
 
+			//assert
 			Assert.AreEqual(expected, actual,
 				"Getter PhoneNumber returns incorrect value");
 		}
 
-		[TestCase(88005553535, "Number starts at 7",
-			TestName = "Assignment of the Number starting not with 7")]
-		[TestCase(880055535353, "Number has 11 numbers",
-			TestName = "Assignment of the Number has not 11 numbers")]
-		public void TestPhoneNumber_ArgumentException(long wrongNumber,
-			string message)
+		[Test(Description = "Negative test of PhoneNumber setter")]
+		public void PhoneNumber_NumberWithoutSevenInStart_ArgumentException()
 		{
+			//setup
 			var contact = CreateEmptyContact();
+            var wrongNumber = 21234567890;
+
+			//assert
 			Assert.Throws<ArgumentException>(
-				() => { contact.PhoneNumber = new PhoneNumber(wrongNumber); },
-				message);
+				() => { contact.PhoneNumber = new PhoneNumber(wrongNumber); });
 		}
 
+
+        [Test(Description = "Negative test of PhoneNumber setter")]
+        public void PhoneNumber_IncorrectNumberLength_ArgumentException()
+        {
+            //setup
+            var contact = CreateEmptyContact();
+            var wrongNumber = 71234567;
+
+            //assert
+            Assert.Throws<ArgumentException>(
+                () => { contact.PhoneNumber = new PhoneNumber(wrongNumber); });
+        }
+
 		[Test(Description = "Positive test of the PhoneNumber setter")]
-		public void TestPhoneNumberSet_CorrectValue()
+		public void PhoneNumberSet_CorrectValue()
 		{
+			//setup
 			var contact = CreateEmptyContact();
-			var phoneNumber = new PhoneNumber(78005553535);
-			Assert.DoesNotThrow(
+            var phoneNumber = new PhoneNumber(78005553535);
+			
+			//assert
+            Assert.DoesNotThrow(
 				() => { contact.PhoneNumber = phoneNumber; },
 				"Positive test of the PhoneNumber setter not passed");
 		}
-		//Test PhoneNumber end
 
-		//Test Birthday start
 		[Test(Description = "Positive test of the Birthday getter")]
-		public void TestBirthdayGet_CorrectValue()
+		public void BirthdayGet_ReturnCorrectValue()
 		{
+			//setup
 			var expected = new DateTime(2000, 12, 12);
-
-			var contact = CreateEmptyContact();
+            var contact = CreateEmptyContact();
 			contact.Birthday = expected;
 
+			//act
 			var actual = contact.Birthday;
 
-			Assert.AreEqual(expected, actual,
-				"Getter Birthday returns incorrect value not passed");
+			//assert
+			Assert.AreEqual(expected, actual);
 		}
 
-		[TestCase(1800, 1, 1,
-			"Date not lower than minimum",
-			TestName = "Assignment of the Birthday is less then min value")]
-		[TestCase(3000, 1, 1,
-			"Date not higher than maximum",
-			TestName = "Assignment of the Birthday in the future")]
-		public void TestBirthdaySet_ArgumentException(int year, int month,
-			int day, string message)
+		[Test(Description = "Negative Test of Birthday setter")]
+		public void BirthdaySet_FutureDate_ArgumentException()
 		{
+			//setup
 			var contact = CreateEmptyContact();
-			var wrongValue = new DateTime(year, month, day);
-			Assert.Throws<ArgumentException>(
-				() => { contact.Birthday = wrongValue; },
-				message);
-		}
+            var wrongValue = DateTime.Now.AddDays(1);
+
+			//assert
+            Assert.Throws<ArgumentException>(
+                () => { contact.Birthday = wrongValue; });
+        }
+
+        [Test(Description = "Negative Test of Birthday setter")]
+        public void BirthdaySet_PastDate_ArgumentException()
+        {
+            //setup
+            var contact = CreateEmptyContact();
+            var wrongValue = new DateTime(1899,1,1);
+
+            //assert
+            Assert.Throws<ArgumentException>(
+                () => { contact.Birthday = wrongValue; });
+        }
+
 
 		[Test(Description = "Positive test of the Birthday setter")]
-		public void TestBirthdaySet_CorrectValue()
+		public void BirthdaySet_ReturnCorrectValue()
 		{
+			//setup
 			var contact = CreateEmptyContact();
-			var dateTime = new DateTime(2000, 12, 21);
-			Assert.DoesNotThrow(
-				() => { contact.Birthday = dateTime; },
-				"Positive test of the PhoneNumber setter not passed");
-		}
-		//Test Birthday end
+            var dateTime = new DateTime(2000, 12, 21);
 
-		//Test Constructor start
+			//assert
+            Assert.DoesNotThrow(
+				() => { contact.Birthday = dateTime; });
+		}
+
 		[Test(Description = "Test constructor")]
 		public void TestConstructor()
 		{
@@ -268,8 +342,7 @@ namespace ContactsApp.UnitTests
             {
                 var contact = new Contact(expectedName, expectedSurname, expectedEmail,
                     expectedVkId, expectedBirthday, expectedPhoneNumber);
-            }, "The constructor did not work");
+            });
 		}
-		//Test Constructor end
-	}
+    }
 }
