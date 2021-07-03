@@ -1,109 +1,164 @@
 ﻿using NUnit.Framework;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace ContactsApp.UnitTests
 {
 		[TestFixture]
 		public class ValidatorTests
 		{
-			[TestCase(1600, 1, 1, "Exception: date is not below 1900",
-				TestName = "Date below 1900")]
-			[TestCase(3000, 1, 1, "Exception: date is not above today")]
-			public void TestBirthdayValidator_ArgumentException(int year,
-				int month, int day, string message)
+			 [Test(Description = "BirthdayValidator negative test")]
+			public void BirthdayValidator_FutureDate_ArgumentException()
 			{
-				var date = new DateTime(year, month, day);
-				Assert.Throws<ArgumentException>(() =>
+				//setup
+				var date = DateTime.Now.AddDays(1);
+
+				//assert
+                Assert.Throws<ArgumentException>(() =>
+                {
+                    DateValidator.AssertDate(date);
+                });
+            }
+
+            [Test(Description = "BirthdayValidator negative test")]
+            public void BirthdayValidator_ToPastDate_ArgumentException()
+            {
+                //setup
+                var date = new DateTime(1899,1,1);
+
+                //assert
+                Assert.Throws<ArgumentException>(() =>
+                {
+                    DateValidator.AssertDate(date);
+                });
+            }
+
+		[Test(Description = "Correct value of date")]
+			public void BirthdayValidator_CorrectValue_DoesNotThrowException()
+        {
+            //setup
+            var date = new DateTime(2000, 12, 12);
+			
+			//assert
+            Assert.DoesNotThrow(() =>
 				{
 					DateValidator.AssertDate(date);
-				}, message);
+				});
 			}
 
-			[Test(Description = "Correctly value of date")]
-			public void TestBirthdayValidator_CorrectlyValue()
-			{
-				var date = new DateTime(2000, 12, 12);
-				Assert.DoesNotThrow(() =>
+			[Test(Description = "Negative AssertStringLength test")]
+			public void AssertStringLength_EmptyValue_ArgumentException()
+            {
+                //setup
+                var emptyValue = "";
+                var maxCount = 5;
+
+				//assert
+                Assert.Throws<ArgumentException>(() =>
 				{
-					DateValidator.AssertDate(date);
-				}, "Incorrect date values");
-			}
+					StringValidator.AssertStringLength(null, emptyValue
+					    , maxCount);
+                });
+            }
 
-			[TestCase("", 12, "Length is not 0",
-				TestName = "Number of characters 0")]
-			[TestCase("dasdfsdfsafdsfasdfasfadfadfa", 5,
-				"Number of characters no more than max",
-				TestName = "More max")]
-			public void TestAssertStringLength_IncorrectValue(string name,
-				int maxCount, string message)
-			{
-				Assert.Throws<ArgumentException>(() =>
-				{
-					StringValidator.AssertStringLength(null, name
-					, maxCount);
-				}, message);
-			}
+            [Test(Description = "Negative AssertStringLength test")]
+            public void AssertStringLength_MoreMaxCountValue_ArgumentException()
+            {
+				//setup
+                var emptyValue = "valera";
+                var maxCount = 5;
 
-			[Test(Description = "Correctly value of date")]
-			public void TestAssertStringLength_CorrectlyValue()
-			{
+				//assert
+                Assert.Throws<ArgumentException>(() =>
+                {
+                    StringValidator.AssertStringLength(null, emptyValue
+                        , maxCount);
+                });
+            }
+
+		[Test(Description = "Correct value of date")]
+			public void AssertStringLength_CorrectValue_DoesNotThrowException()
+            {
+                var value = "valera";
+                var maxValue = 10;
 				Assert.DoesNotThrow(() =>
 				{
 					StringValidator.AssertStringLength(null,
-						"mem", 10);
-				}, "Incorrect number");
+                        value, maxValue);
+				});
 			}
 
 			[Test(Description = "Return empty string through GetClearPhoneNumber")]
-			public void TestGetClearPhoneNumber_EmptyString()
+			public void GetClearPhoneNumber_StringWithoutNumbers_EmptyString()
 			{
+				//setup
 				var number = "adfasdasdfasdfasdf";
+                var expected = "";
 
-				var expected = "";
-
+				//act
 				var actual = StringValidator.GetClearNumber(number);
 
+				//assert
 				Assert.AreEqual(expected, actual,
 					"Actual is not empty sting");
 			}
 
 			[Test(Description = "Return number through GetClearPhoneNumber")]
-			public void TestGetClearPhoneNumber_Number()
+			public void GetClearPhoneNumber_StringWithNumbers_CorrectNumber()
 			{
+				//setup
 				var number = "a8d800fa555s3d5a35sdfasdfasdf";
-
-				var expected = "88005553535";
-
+                var expected = "88005553535";
+			
+				//act
 				var actual = StringValidator.GetClearNumber(number);
 
+				//assert
 				Assert.AreEqual(expected, actual,
 					"Actual is not empty sting");
 			}
 
-			[TestCase(88005553535, 11, "Start with 7",
-				TestName = "Number start with not 7")]
-			[TestCase(792355865554, 11,
-				"Correct Phone number",
-				TestName = "Number is not equal then value")]
-			public void TestAssertPhoneNumber_IncorrectValue(long number,
-				int maxCount, string message)
-			{
+			[Test(Description = "AssertPhoneNumber negative test")]
+			public void AssertPhoneNumber_StartNotFromSeven_ThrowsException()
+            {
+			    //setup
+                var wrongNumber = 12345678990;
+                var maxLength = 11;
+
+				//assert
 				Assert.Throws<ArgumentException>(() =>
 				{
-					StringValidator.AssertNumber(number,
-						maxCount);
-				}, message);
+					StringValidator.AssertNumber(wrongNumber,
+                        maxLength);
+				});
 			}
 
-			[Test(Description = "Correctly number")]
-			public void TestAssertPhoneNumber_CorrectlyValue()
-			{
+            [Test(Description = "AssertPhoneNumber negative test")]
+            public void AssertPhoneNumber_NotEqualMaxLength_ThrowsException()
+            {
+                //setup
+                var wrongNumber = 723456;
+                var maxLength = 11;
+
+                //assert
+                Assert.Throws<ArgumentException>(() =>
+                {
+                    StringValidator.AssertNumber(wrongNumber,
+                        maxLength);
+                });
+            }
+
+            [Test(Description = "Correct number")]
+			public void AssertPhoneNumber_CorrectValue_DoesNotThrowException()
+            {
+				//setup
+                var value = 71234567890;
+                var maxLength = 11;
+
+				//assert
 				Assert.DoesNotThrow(() =>
 				{
-					StringValidator.AssertNumber(78005553535, 11);
-				}, "Incorrect date values");
+					StringValidator.AssertNumber(value, maxLength);
+				});
 			}
 		}
 	}
