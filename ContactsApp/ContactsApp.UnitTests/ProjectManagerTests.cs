@@ -19,7 +19,7 @@ namespace ContactsApp.UnitTests
         /// <summary>
         /// Folder for tests data
         /// </summary>
-        private static readonly string _folder = @"TestData/";
+        private static readonly string _folder = @"TestData\";
 
         /// <summary>
         /// Folder for tests output
@@ -39,15 +39,15 @@ namespace ContactsApp.UnitTests
         /// <summary>
         /// Reference path file for tests
         /// </summary>
-        private static readonly string _referencePath = @"TestData/Reference.json";
+        private static readonly string _referencePath = @"TestData\Reference.json";
 
         /// <summary>
         /// Reference path broken file for tests
         /// </summary>
-        private static readonly string _referenceBrokenPath = @"TestData/ReferenceBroken.json";
+        private static readonly string _referenceBrokenPath = @"TestData\ReferenceBroken.json";
 
 
-        private static readonly string _nonexistentFile = @"TestData/NonexistentFile.json";
+        private static readonly string _nonexistentFile = @"TestData\NonexistentFile.json";
 
         public Project GetProject()
         {
@@ -79,7 +79,7 @@ namespace ContactsApp.UnitTests
         {
             //setup
             var expected = GetProject();
-            ProjectManager._filePath = _referencePath;
+            ProjectManager._filePath = _path;
 
             //act
             var actual = ProjectManager.Load(ProjectManager._filePath);
@@ -118,48 +118,49 @@ namespace ContactsApp.UnitTests
                 "Actual project is existent");
         }
 
+        [Test(Description = "Test to write in the file without file")]
+        public void TestSaveProject_WithoutCreatedFile()
+        {
+            ProjectManager._filePath = _outputPath;
+            var expected = File.ReadAllText(_referencePath);
+            var savingObject = GetProject();
+            if (Directory.Exists(_output))
+            {
+                Directory.Delete(_output,true);
+            }
+
+            //act
+            ProjectManager.Save(savingObject, _outputPath);
+
+            //assert
+            var actual = File.ReadAllText(_outputPath);
+            Assert.AreEqual(expected, actual,
+                "Values are not the same");
+        }
+
         [Test(Description = "Test to write in the file")]
         public void TestSaveProject_WithCreatedFile()
         {
             //setup
             ProjectManager._filePath = _outputPath;
             var expected = File.ReadAllText(_referencePath);
-            var expectedObject = GetProject();
+            var savingObject = GetProject();
             if (File.Exists(_outputPath))
             {
                 File.Delete(_outputPath);
             }
+            Directory.CreateDirectory(_output);
             File.Create(_outputPath).Close();
             File.WriteAllText(_outputPath, expected);
 
             //act
-            ProjectManager.Save(expectedObject, ProjectManager._filePath);
+            ProjectManager.Save(savingObject, ProjectManager._filePath);
 
             //assert
             var actual = File.ReadAllText(_outputPath);
             Assert.AreEqual(expected, actual,
                 "Values are not the same");
 
-        }
-
-        [Test(Description = "Test to write in the file without file")]
-        public void TestSaveProject_WithoutCreatedFile()
-        {
-            ProjectManager._filePath = _outputPath;
-            var expected = File.ReadAllText(_referencePath);
-            var expectedObject = GetProject();
-            if (File.Exists(_outputPath))
-            {
-                File.Delete(_outputPath);
-            }
-
-            //act
-            ProjectManager.Save(expectedObject, _outputPath);
-
-            //assert
-            var actual = File.ReadAllText(_outputPath);
-            Assert.AreEqual(expected, actual,
-                "Values are not the same");
         }
     }
 }
