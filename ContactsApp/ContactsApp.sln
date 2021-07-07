@@ -11,8 +11,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContactsApp.UnitTests", "Co
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Testing", "Testing", "{B7B4F91C-10D0-41AB-B9BC-9A8A67320FB3}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TestData", "TestData", "{EFAC36BF-8F61-419F-A8D6-380B8BCB1B47}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,7 +35,6 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{2EB35A5D-4985-4EA3-8D98-F0B4764680EC} = {B7B4F91C-10D0-41AB-B9BC-9A8A67320FB3}
-		{EFAC36BF-8F61-419F-A8D6-380B8BCB1B47} = {B7B4F91C-10D0-41AB-B9BC-9A8A67320FB3}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {AFC2CFF4-65F5-4AB0-93A5-E7D2215E880F}

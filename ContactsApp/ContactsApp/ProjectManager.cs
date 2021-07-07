@@ -39,11 +39,10 @@ namespace ContactsApp
             {
                 Directory.CreateDirectory(directory);
             }
-            JsonSerializer serializer = new JsonSerializer();
-            using (StreamWriter sw = new StreamWriter(_filePath))
-            using (JsonWriter writer = new JsonTextWriter(sw))
+            using (StreamWriter file = new StreamWriter(
+                path, false, System.Text.Encoding.UTF8))
             {
-                serializer.Serialize(writer, project);
+                file.Write(JsonConvert.SerializeObject(project));
             }
         }
 
@@ -64,16 +63,12 @@ namespace ContactsApp
 
             try
             {
-                JsonSerializer serializer = new JsonSerializer();
-                using (StreamReader sr = new StreamReader(path))
-                using (JsonReader reader = new JsonTextReader(sr))
-                {
-                    project = serializer.Deserialize<Project>(reader);
+                var projectText = File.ReadAllText(path);
+                project = JsonConvert.DeserializeObject<Project>(projectText);
                     if (project == null)
                     {
                         return new Project();
                     }
-                }
             }
             catch
             {

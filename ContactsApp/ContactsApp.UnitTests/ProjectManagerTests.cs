@@ -8,132 +8,158 @@ using Newtonsoft.Json;
 
 namespace ContactsApp.UnitTests
 {
-	[TestFixture]
-	public class ProjectManagerTests
-	{
-		/// <summary>
-		/// File name for tests
-		/// </summary>
-		private static readonly string _fileName = "TestFile.txt";
+    [TestFixture]
+    public class ProjectManagerTests
+    {
+        /// <summary>
+        /// File name for tests
+        /// </summary>
+        private static readonly string _fileName = "Reference.json";
 
-		/// <summary>
-		/// Folder for tests
-		/// </summary>
-		private static readonly string _folder = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + @"\TestData\";
+        /// <summary>
+        /// Folder for tests data
+        /// </summary>
+        private static readonly string _folder = @"TestData/";
 
-		/// <summary>
-		/// All path for tests
-		/// </summary>
-		private static readonly string _path = _folder + _fileName;
+        /// <summary>
+        /// Folder for tests output
+        /// </summary>
+        private static readonly string _output = @"Output";
 
-		/// <summary>
-		/// Reference path file for tests
-		/// </summary>
-		private static readonly string _referencePath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + @"\TestData\Reference.json";
+        /// <summary>
+        /// All path for tests
+        /// </summary>
+        private static readonly string _path = Path.Combine(_folder, _fileName);
 
-		/// <summary>
-		/// Reference path broken file for tests
-		/// </summary>
-		private static readonly string _referenceBrokenPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + @"\TestData\ReferenceBroken.json";
+        /// <summary>
+        /// 
+        /// </summary>
+        private static readonly string _outputPath = Path.Combine(_output, _fileName);
 
-		private static readonly string _nonexistentFile = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + @"\TestData\NonexistentFile.json";
+        /// <summary>
+        /// Reference path file for tests
+        /// </summary>
+        private static readonly string _referencePath = @"TestData/Reference.json";
 
-		[TearDown]
-		public void DeleteFile()
-		{
-			if (File.Exists(_path))
-			{
-				File.Delete(_path);
-			}
-		}
+        /// <summary>
+        /// Reference path broken file for tests
+        /// </summary>
+        private static readonly string _referenceBrokenPath = @"TestData/ReferenceBroken.json";
 
-		[Test(Description = "Read correct file")]
-		public void Test_ReadProject_Set_CorrectData()
-		{
-			ProjectManager._filePath = _path;
-			var expected = File.ReadAllText(_referencePath);
-			if (File.Exists(_path))
-			{
-				File.Delete(_path);
-			}
-			File.Create(_path).Close();
-			File.WriteAllText(_path, expected);
-			if (File.Exists(_path))
-			{
-				var actualObject = ProjectManager.Load(ProjectManager._filePath);
-				var actual = JsonConvert.SerializeObject(actualObject);
-				Assert.AreEqual(expected, actual,
-					"Values are not the same");
-			}
-		}
 
-		[Test(Description = "Read broken  file")]
-		public void Test_ReadProject_BrokenData()
-		{
-			var expected = JsonConvert.SerializeObject(new Project());
+        private static readonly string _nonexistentFile = @"TestData/NonexistentFile.json";
 
-			ProjectManager._filePath = _referenceBrokenPath;
-			var actualObject = ProjectManager.Load(ProjectManager._filePath);
-			var actual = JsonConvert.SerializeObject(actualObject);
+        public Project GetProject()
+        {
+            var expectedProject = new Project();
+            var contact = new Contact("Vlad",
+                "Stepankov",
+                "norm.parya@gmail.com",
+                "Snax",
+                new DateTime(2001, 1, 6),
+                new PhoneNumber(71234567890)
+            );
+            expectedProject.Contacts.Add(contact);
+            contact = new Contact(
+                "Alesha",
+                "Popovich",
+                "Popa@gmail.com",
+                "AlePop",
+                new DateTime(1988, 11, 12),
+                new PhoneNumber(70987654321)
+            );
+            expectedProject.Contacts.Add(contact);
+            ProjectManager._filePath = _referencePath;
 
-			Assert.AreEqual(expected, actual);
-		}
+            return expectedProject;
+        }
 
-		[Test(Description = "Try to read nonexistent file")]
-		public void TestReadProject_NonexistentFile()
-		{
-			var expected = JsonConvert.SerializeObject(new Project());
+        [Test(Description = "Read correct file")]
+        public void ReadProject_CorrectData_LoadedProject()
+        {
+            //setup
+            var expected = GetProject();
+            ProjectManager._filePath = _referencePath;
 
-			ProjectManager._filePath = _nonexistentFile;
-			var actual = JsonConvert.SerializeObject(
-				ProjectManager.Load(ProjectManager._filePath));
+            //act
+            var actual = ProjectManager.Load(ProjectManager._filePath);
 
-			Assert.AreEqual(expected, actual,
-				"Actual project is existent");
-		}
+            //assert
+            Assert.AreEqual(expected.Contacts, actual.Contacts,
+                "Values are not the same");
+        }
 
-		[Test(Description = "Test to write in the file")]
-		public void TestSaveProject_WithCreatedFile()
-		{
+        [Test(Description = "Read broken  file")]
+        public void Test_ReadProject_BrokenData()
+        {
+            //setup
+            var expected = new Project();
+            ProjectManager._filePath = _referenceBrokenPath;
 
-			ProjectManager._filePath = _path;
-			if (File.Exists(_path))
-			{
-				File.Delete(_path);
-			}
-			File.Create(_path).Close();
-			var expected = File.ReadAllText(_referencePath);
-			var expectedObject = JsonConvert.DeserializeObject<Project>(
-				expected);
-			ProjectManager.Save(expectedObject, ProjectManager._filePath);
-			if (File.Exists(_path))
-			{
-				var actual = File.ReadAllText(_path);
-				Assert.AreEqual(expected, actual,
-					"Values are not the same");
-			}
-		}
+            //act
+            var actual = ProjectManager.Load(ProjectManager._filePath);
 
-		[Test(Description = "Test to write in the file without file")]
-		public void TestSaveProject_WithoutCreatedFile()
-		{
+            //assert
+            Assert.AreEqual(expected.Contacts, actual.Contacts);
+        }
 
-			ProjectManager._filePath = _path;
-			if (File.Exists(_path))
-			{
-				File.Delete(_path);
-			}
-			var expected = File.ReadAllText(_referencePath);
-			var expectedObject = JsonConvert.DeserializeObject<Project>(
-				expected);
-			ProjectManager.Save(expectedObject, ProjectManager._filePath);
-			if (File.Exists(ProjectManager._filePath))
-			{
-				var actual = File.ReadAllText(
-					ProjectManager._filePath);
-				Assert.AreEqual(expected, actual,
-					"Values are not the same");
-			}
-		}
-	}
+        [Test(Description = "Try to read nonexistent file")]
+        public void TestReadProject_NonExistentFile()
+        {
+            //setup
+            var expected = new Project();
+            ProjectManager._filePath = _nonexistentFile;
+
+            //act
+            var actual = ProjectManager.Load(ProjectManager._filePath);
+
+            //assert
+            Assert.AreEqual(expected.Contacts, actual.Contacts,
+                "Actual project is existent");
+        }
+
+        [Test(Description = "Test to write in the file")]
+        public void TestSaveProject_WithCreatedFile()
+        {
+            //setup
+            ProjectManager._filePath = _outputPath;
+            var expected = File.ReadAllText(_referencePath);
+            var expectedObject = GetProject();
+            if (File.Exists(_outputPath))
+            {
+                File.Delete(_outputPath);
+            }
+            File.Create(_outputPath).Close();
+            File.WriteAllText(_outputPath, expected);
+
+            //act
+            ProjectManager.Save(expectedObject, ProjectManager._filePath);
+
+            //assert
+            var actual = File.ReadAllText(_outputPath);
+            Assert.AreEqual(expected, actual,
+                "Values are not the same");
+
+        }
+
+        [Test(Description = "Test to write in the file without file")]
+        public void TestSaveProject_WithoutCreatedFile()
+        {
+            ProjectManager._filePath = _outputPath;
+            var expected = File.ReadAllText(_referencePath);
+            var expectedObject = GetProject();
+            if (File.Exists(_outputPath))
+            {
+                File.Delete(_outputPath);
+            }
+
+            //act
+            ProjectManager.Save(expectedObject, _outputPath);
+
+            //assert
+            var actual = File.ReadAllText(_outputPath);
+            Assert.AreEqual(expected, actual,
+                "Values are not the same");
+        }
+    }
 }
