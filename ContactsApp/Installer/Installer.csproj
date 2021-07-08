@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="md &quot;$(SolutionDir)InstallScripts&quot;&#xD;&#xA;md &quot;$(SolutionDir)InstallScripts\Release&quot;&#xD;&#xA;md &quot;$(SolutionDir)InstallScripts\Installers&quot;&#xD;&#xA;xcopy &quot;$(SolutionDir)ContactsApp.UnitTests\$(OutDir)*.dll&quot; &quot;$(SolutionDir)InstallScripts\Release&quot;&#xD;&#xA;xcopy &quot;$(SolutionDir)ContactsApp.UnitTests\$(OutDir)*.exe&quot; &quot;$(SolutionDir)InstallScripts\Release&quot;&#xD;&#xA;&quot;$(SolutionDir)packages\Tools.InnoSetup.6.2.0\tools\ISCC.exe&quot; &quot;$(SolutionDir)InstallScripts\Installers\Installer.iss&quot;&#xD;&#xA;rd &quot;$(SolutionDir)InstallScripts\Release&quot;" />
+  </Target>
+
+</Project>
