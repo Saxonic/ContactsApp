@@ -41,10 +41,10 @@ Name: "russian"; MessagesFile: "compiler:Languages\Russian.isl"
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 
 [Files]
-Source: "..\Release\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\Release\ContactsApp.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\Release\Newtonsoft.Json.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\..\ico\{#MyAppIcoName}"; DestDir: "{app}"
+Source: "Release\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
+Source: "Release\ContactsApp.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "Release\Newtonsoft.Json.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#MyAppIcoName}"; DestDir: "{app}"
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Registry]
