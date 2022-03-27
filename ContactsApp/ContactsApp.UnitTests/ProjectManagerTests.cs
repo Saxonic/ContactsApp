@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Runtime.InteropServices.ComTypes;
 using System.IO;
-using System.Reflection;
 using NUnit.Framework;
-using NUnit.Framework.Internal;
-using Newtonsoft.Json;
 
 namespace ContactsApp.UnitTests
 {
