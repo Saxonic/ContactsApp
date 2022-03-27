@@ -21,7 +21,6 @@ namespace ContactsAppUI
         public MainForm()
         {
             InitializeComponent();
-            
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -54,7 +53,7 @@ namespace ContactsAppUI
         /// <summary>
         /// Выполняет сортировку контактов по алфавиту
         /// </summary>
-        private void СontactSort()
+        private void ContactSort()
         {
             if(SearchTextBox.Text.Length == 0)
             {
@@ -84,7 +83,7 @@ namespace ContactsAppUI
         /// </summary>
         private void UpdateListBox()
         {
-            СontactSort();
+            ContactSort();
             ContactsListBox.DataSource = null;
             ContactsListBox.DataSource = _contacts;
             ContactsListBox.DisplayMember = nameof(Contact.Surname);
@@ -121,7 +120,7 @@ namespace ContactsAppUI
             }
             var contact = _project.Contacts[selectedIndex];
             DialogResult = MessageBox.Show("Do you really want to delete contact " +
-                contact.Name + "  " + contact.Surname + "?",
+                $"{contact.Name} {contact.Surname}?",
                 "Message", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             if (DialogResult == DialogResult.Yes)
             {
@@ -148,7 +147,7 @@ namespace ContactsAppUI
             }
 
             var selectedContact = _contacts[selectedIndex];
-            ContactForm contactForm = new ContactForm()
+            var contactForm = new ContactForm
             {
                 Contact = selectedContact
             };
@@ -169,7 +168,7 @@ namespace ContactsAppUI
         /// </summary>
         private void AddContact()
         {
-            ContactForm contactForm = new ContactForm();
+            var contactForm = new ContactForm();
             DialogResult = contactForm.ShowDialog();
             var newContact = contactForm.Contact;
             if (DialogResult == DialogResult.OK)
@@ -202,7 +201,7 @@ namespace ContactsAppUI
 
         private void exit_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Close();
         }
 
         private void about_Click(object sender, EventArgs e)
@@ -212,18 +211,20 @@ namespace ContactsAppUI
         }
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
-            if (keyData == (Keys.F1))
+            switch (keyData)
             {
-                var about = new AboutForm();
-                about.ShowDialog();
-                return true;
+                case Keys.F1:
+                {
+                    var about = new AboutForm();
+                    about.ShowDialog();
+                    return true;
+                }
+                case Keys.Delete:
+                    DeleteContact();
+                    return true;
+                default:
+                    return base.ProcessCmdKey(ref msg, keyData);
             }
-            if (keyData == (Keys.Delete))
-            {
-                DeleteContact();
-                return true;
-            }
-            return base.ProcessCmdKey(ref msg, keyData);
         }
 
         private void DeleteButton_Click(object sender, EventArgs e)

@@ -18,8 +18,8 @@ namespace ContactsApp
         /// <summary>
         /// Содержит стандартный путь в папку данных <see cref="_directory"/>
         /// </summary>
-        private static readonly string _directory = 
-            Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) 
+        private static readonly string _directory =
+            Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)
             + @"\VladioINC\ContactsApp";
 
         /// <summary>
@@ -39,6 +39,7 @@ namespace ContactsApp
             {
                 Directory.CreateDirectory(directory);
             }
+
             using (StreamWriter file = new StreamWriter(
                 path, false, System.Text.Encoding.UTF8))
             {
@@ -54,7 +55,7 @@ namespace ContactsApp
         /// </returns>
         public static Project Load(string path)
         {
-            Project project = new Project();
+            var project = new Project();
 
             if (!File.Exists(path))
             {
@@ -65,10 +66,10 @@ namespace ContactsApp
             {
                 var projectText = File.ReadAllText(path);
                 project = JsonConvert.DeserializeObject<Project>(projectText);
-                    if (project == null)
-                    {
-                        return new Project();
-                    }
+                if (project == null)
+                {
+                    return new Project();
+                }
             }
             catch
             {
@@ -77,6 +78,5 @@ namespace ContactsApp
 
             return project;
         }
-
     }
 }

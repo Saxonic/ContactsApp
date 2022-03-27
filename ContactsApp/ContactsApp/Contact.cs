@@ -49,10 +49,7 @@ namespace ContactsApp
         /// </summary>
         public string Name
         {
-            get
-            {
-                return _name;
-            }
+            get => _name;
             set
             {
                 StringValidator.AssertStringLength(nameof(Name),value,
@@ -66,10 +63,7 @@ namespace ContactsApp
         /// </summary>
         public string Surname
         {
-            get
-            {
-                return _surname;
-            }
+            get => _surname;
             set
             {
                 StringValidator.AssertStringLength(nameof(Surname),value,
@@ -117,10 +111,7 @@ namespace ContactsApp
         /// </summary>
         public DateTime Birthday
         {
-            get
-            {
-                return _birthday;
-            }
+            get => _birthday;
             set
             {
                 DateValidator.AssertDate(value);
@@ -171,8 +162,8 @@ namespace ContactsApp
         /// <returns></returns>
         public object Clone()
         {
-            return new Contact(this.Name, this.Surname, this.Email, this.VkID, 
-                this.Birthday, new PhoneNumber(this.PhoneNumber.Number));
+            return new Contact(Name, Surname, Email, VkID, 
+                Birthday, new PhoneNumber(PhoneNumber.Number));
         }
 
         public bool Equals(Contact other)

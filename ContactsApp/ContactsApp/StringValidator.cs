@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace ContactsApp
 {
@@ -24,15 +25,8 @@ namespace ContactsApp
 
         public static string GetClearNumber(string number)
         {
-            string clearNumber = "";
-            foreach (var i in number)
-            {
-                if (i >= '0' && i <= '9')
-                {
-                    clearNumber += i;
-                }
-            }
-            return clearNumber;
+            return number.Where(i => i >= '0' && i <= '9')
+                .Aggregate(string.Empty, (current, i) => current + i);
         }
 
         /// <summary>

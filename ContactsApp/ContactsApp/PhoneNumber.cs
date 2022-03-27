@@ -23,10 +23,7 @@ namespace ContactsApp
         /// </summary>
         public long Number
         {
-            get
-            {
-                return _number;
-            }
+            get => _number;
             set
             {
                 StringValidator.AssertNumber(value,NUMBERLENGHT);
@@ -56,7 +53,7 @@ namespace ContactsApp
         {
             if (ReferenceEquals(null, obj)) return false;
             if (ReferenceEquals(this, obj)) return true;
-            if (obj.GetType() != this.GetType()) return false;
+            if (obj.GetType() != GetType()) return false;
             return Equals((PhoneNumber) obj);
         }
 
