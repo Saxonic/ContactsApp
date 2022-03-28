@@ -23,9 +23,9 @@ namespace ContactsApp
             + @"\VladioINC\ContactsApp";
 
         /// <summary>
-        /// Содержит путь до файла <see cref="_filePath"/>
+        /// Содержит путь до файла <see cref="filePath"/>
         /// </summary>
-        public static string _filePath = _directory + NAME;
+        public static string filePath = _directory + NAME;
 
         /// <summary>
         /// Реализует сохранение файла

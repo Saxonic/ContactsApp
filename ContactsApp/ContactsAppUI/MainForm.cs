@@ -27,7 +27,7 @@ namespace ContactsAppUI
         {
             try
             {
-                _project = ProjectManager.Load(ProjectManager._filePath);
+                _project = ProjectManager.Load(ProjectManager.filePath);
             }
             catch(AccessViolationException exception)
             {
@@ -126,7 +126,7 @@ namespace ContactsAppUI
             {
                 var selectedContact = _contacts[selectedIndex];
                 _project.Contacts.Remove(selectedContact);
-                ProjectManager.Save(_project, ProjectManager._filePath);
+                ProjectManager.Save(_project, ProjectManager.filePath);
                 UpdateListBox();
                 ContactsListBox.ClearSelected();
                 ClearRightPanel();
@@ -157,7 +157,7 @@ namespace ContactsAppUI
                 var editContact = contactForm.Contact;
                 _project.Contacts.Remove(selectedContact);
                 _project.Contacts.Add(editContact);
-                ProjectManager.Save(_project, ProjectManager._filePath);
+                ProjectManager.Save(_project, ProjectManager.filePath);
                 ChangeTextBox(editContact);
                 UpdateListBox();
                 ContactsListBox.SelectedIndex = _contacts.IndexOf(editContact);
@@ -174,7 +174,7 @@ namespace ContactsAppUI
             if (DialogResult == DialogResult.OK)
             {
                 _project.Contacts.Add(newContact);
-                ProjectManager.Save(_project, ProjectManager._filePath);
+                ProjectManager.Save(_project, ProjectManager.filePath);
                 UpdateListBox();
                 ChangeTextBox(newContact);
                 ContactsListBox.SelectedIndex = _contacts.IndexOf(newContact);
@@ -196,7 +196,7 @@ namespace ContactsAppUI
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            ProjectManager.Save(_project,ProjectManager._filePath);
+            ProjectManager.Save(_project,ProjectManager.filePath);
         }
 
         private void exit_Click(object sender, EventArgs e)

@@ -65,7 +65,7 @@ namespace ContactsApp.UnitTests
                 new PhoneNumber(70987654321)
             );
             expectedProject.Contacts.Add(contact);
-            ProjectManager._filePath = _referencePath;
+            ProjectManager.filePath = _referencePath;
 
             return expectedProject;
         }
@@ -75,10 +75,10 @@ namespace ContactsApp.UnitTests
         {
             //setup
             var expected = GetProject();
-            ProjectManager._filePath = _path;
+            ProjectManager.filePath = _path;
 
             //act
-            var actual = ProjectManager.Load(ProjectManager._filePath);
+            var actual = ProjectManager.Load(ProjectManager.filePath);
 
             //assert
             Assert.AreEqual(expected.Contacts, actual.Contacts,
@@ -90,10 +90,10 @@ namespace ContactsApp.UnitTests
         {
             //setup
             var expected = new Project();
-            ProjectManager._filePath = _referenceBrokenPath;
+            ProjectManager.filePath = _referenceBrokenPath;
 
             //act
-            var actual = ProjectManager.Load(ProjectManager._filePath);
+            var actual = ProjectManager.Load(ProjectManager.filePath);
 
             //assert
             Assert.AreEqual(expected.Contacts, actual.Contacts);
@@ -104,10 +104,10 @@ namespace ContactsApp.UnitTests
         {
             //setup
             var expected = new Project();
-            ProjectManager._filePath = _nonexistentFile;
+            ProjectManager.filePath = _nonexistentFile;
 
             //act
-            var actual = ProjectManager.Load(ProjectManager._filePath);
+            var actual = ProjectManager.Load(ProjectManager.filePath);
 
             //assert
             Assert.AreEqual(expected.Contacts, actual.Contacts,
@@ -117,7 +117,7 @@ namespace ContactsApp.UnitTests
         [Test(Description = "Test to write in the file without file")]
         public void TestSaveProject_WithoutCreatedFile()
         {
-            ProjectManager._filePath = _outputPath;
+            ProjectManager.filePath = _outputPath;
             var expected = File.ReadAllText(_referencePath);
             var savingObject = GetProject();
             if (Directory.Exists(_output))
@@ -138,7 +138,7 @@ namespace ContactsApp.UnitTests
         public void TestSaveProject_WithCreatedFile()
         {
             //setup
-            ProjectManager._filePath = _outputPath;
+            ProjectManager.filePath = _outputPath;
             var expected = File.ReadAllText(_referencePath);
             var savingObject = GetProject();
             if (File.Exists(_outputPath))
@@ -150,7 +150,7 @@ namespace ContactsApp.UnitTests
             File.WriteAllText(_outputPath, expected);
 
             //act
-            ProjectManager.Save(savingObject, ProjectManager._filePath);
+            ProjectManager.Save(savingObject, ProjectManager.filePath);
 
             //assert
             var actual = File.ReadAllText(_outputPath);
